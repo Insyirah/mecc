@@ -1,3 +1,44 @@
 page-home {
-
-}
+    
+        
+        test{
+            width : 50px;
+            height : 100px;
+            background-image: url('../../assets/dino.jpg');
+            position:absolute;
+        }
+    
+        ion-scroll[scrollX] {
+            white-space: nowrap;
+            height: 100px;
+            overflow: hidden;
+        
+            .scroll-item {
+              display: inline-block;
+            }
+        
+            // .selectable-icon{
+            //   margin: 10px 20px 10px 20px;
+            //   color: red;
+            //   font-size: 100px;
+            // }
+       
+            div img{
+              margin: 10px;
+              width:25%;
+              height:25%;
+              box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            }
+          }
+        
+          ion-scroll[scroll-div]{
+            height: 100px;
+          }
+        
+          /* Hide ion-content scrollbar */
+          ::-webkit-scrollbar{
+            display:none;
+          }
+    
+    }
+    
