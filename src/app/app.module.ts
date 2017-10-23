@@ -7,9 +7,13 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ListprovidersPage } from '../pages/listproviders/listproviders'
+import { TreatmentprovidersPage } from '../pages/treatmentproviders/treatmentproviders'
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {SetTimeAppointmentPage} from '../pages/set-time-appointment/set-time-appointment';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ListprovidersPage,
+    TreatmentprovidersPage,
+    SetTimeAppointmentPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ListprovidersPage,
+    TreatmentprovidersPage,
+    SetTimeAppointmentPage
   ],
   providers: [
     StatusBar,
