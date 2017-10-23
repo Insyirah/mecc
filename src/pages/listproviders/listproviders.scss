@@ -1,0 +1,15 @@
+page-listproviders {
+
+    ion-thumbnail {
+         min-width: 3rem;    
+         min-height: 3rem;
+         ion-img {
+             opacity: 0.4;
+             background-image: url('../assets/dino.jpg');
+             max-width: 12rem;    
+             min-width: 4rem;
+             min-height: 4rem;
+         }
+    }
+
+}

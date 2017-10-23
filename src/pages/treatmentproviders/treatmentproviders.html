@@ -1,0 +1,54 @@
+<!--
+  Generated template for the TreatmentprovidersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Provider's Name</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-segment color="primary" [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
+        <ion-segment-button value="first">
+          TREATMENTS
+        </ion-segment-button>
+    
+        <ion-segment-button value="second">
+          ABOUT
+        </ion-segment-button>
+
+        <ion-segment-button value="third">
+          REVIEWS
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
+          <ion-slide>
+            <br>
+              <span class="select">Select the treatments</span><br>
+              <span class="choose">You can choose multiple treatment</span><br><br>
+              <span class="type">Hair</span>
+
+              <ion-item *ngFor="let treatment of treatments">
+                {{treatment.name}} <a class="hours">{{treatment.hours}}</a><a class="hours">{{treatment.price}}</a>
+              </ion-item>
+              <button (click)="bookAppointment()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Make Appointment</button>
+          </ion-slide>
+      
+      
+          <ion-slide>
+            about
+          </ion-slide>
+
+          <ion-slide>
+              review
+            </ion-slide>
+        </ion-slides>
+
+</ion-content>
