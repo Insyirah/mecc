@@ -40,6 +40,9 @@ export class TreatmentprovidersPage {
     ];
   }
 
+  // slideData = [{ image: "../../assets/images/saloon1.jpg" },{ image: "../../assets/images/pic1.jpg" },
+  // { image: "../../assets/images/pic2.jpg" }];
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad TreatmentprovidersPage');
   }

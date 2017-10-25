@@ -14,6 +14,7 @@ import { TreatmentprovidersPage } from '../pages/treatmentproviders/treatmentpro
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {SetTimeAppointmentPage} from '../pages/set-time-appointment/set-time-appointment';
+import { ServiceProvider } from '../providers/service/service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {SetTimeAppointmentPage} from '../pages/set-time-appointment/set-time-app
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServiceProvider
   ]
 })
 export class AppModule {}
