@@ -33,15 +33,22 @@
               </ion-item>
               <button  (click)="bookAppointment()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Make Appointment</button>
           </ion-slide>
-      
-      
+
           <ion-slide>
-              <!-- <ion-slides autoplay="5000" loop="true" speed="3000">
-                <ion-slide *ngFor="let slide of slideData">
-                  <img src="{{slide.image}}" />
-                </ion-slide>
-              </ion-slides> -->
+
+              <ion-slides pager="true" parallax="true">
+                  <ion-slide>
+                    <img src="assets/1.jpg">
+                  </ion-slide>
+                  <ion-slide>
+                    <img src="assets/1.jpg">
+                  </ion-slide>
+                  <ion-slide>
+                    <img src="assets/1.jpg">
+                  </ion-slide>
+                </ion-slides>
             <ion-item>
+                
               <h2><b>Vida Hair</b></h2>
               <button class="button" ion-button color="rate">4.2
                 <ion-icon name="star-half" ios="ios-star-half" md="md-star-half" class="rate"></ion-icon>

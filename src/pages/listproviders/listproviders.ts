@@ -13,7 +13,7 @@ export class ListprovidersPage {
 @ViewChild('mySlider')slider : Slides;
   selectedSegment: string;
   slides: any;
-
+  marker: any[];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.selectedSegment = 'first';
     this.slides = [
@@ -35,6 +35,8 @@ export class ListprovidersPage {
       {name:'Johny Saloons',address:"Bandung"},
       {name:'Johny Saloons',address:"Bandung"},
     ];
+
+    this.marker = [3.135111,101.684282];
   }
 
 
