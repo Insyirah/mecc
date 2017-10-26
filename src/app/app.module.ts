@@ -14,6 +14,12 @@ import { TreatmentprovidersPage } from '../pages/treatmentproviders/treatmentpro
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {SetTimeAppointmentPage} from '../pages/set-time-appointment/set-time-appointment';
+import {SetDayAppointmentPage} from '../pages/set-day-appointment/set-day-appointment';
+import {ListprovidersPageModule} from '../pages/listproviders/listproviders.module';
+import {TreatmentprovidersPageModule} from '../pages/treatmentproviders/treatmentproviders.module';
+import {SetTimeAppointmentPageModule} from '../pages/set-time-appointment/set-time-appointment.module';
+import {SetDayAppointmentPageModule} from '../pages/set-day-appointment/set-day-appointment.module';
+import {ConfirmBookingPageModule} from '../pages/confirm-booking/confirm-booking.module';
 
 @NgModule({
   declarations: [
@@ -22,12 +28,15 @@ import {SetTimeAppointmentPage} from '../pages/set-time-appointment/set-time-app
     ContactPage,
     HomePage,
     TabsPage,
-    ListprovidersPage,
-    TreatmentprovidersPage,
-    SetTimeAppointmentPage
   ],
   imports: [
     BrowserModule,
+    ListprovidersPageModule,
+    TreatmentprovidersPageModule,
+    SetTimeAppointmentPageModule,
+    SetDayAppointmentPageModule,  
+    ConfirmBookingPageModule,
+    
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -37,9 +46,6 @@ import {SetTimeAppointmentPage} from '../pages/set-time-appointment/set-time-app
     ContactPage,
     HomePage,
     TabsPage,
-    ListprovidersPage,
-    TreatmentprovidersPage,
-    SetTimeAppointmentPage
   ],
   providers: [
     StatusBar,

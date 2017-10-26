@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {NavController, Slides} from 'ionic-angular';
 
 @Component({
   selector: 'page-about',
@@ -7,8 +7,38 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
+  @ViewChild('mySlider')slider : Slides;
+  selectedSegment: string;
+  slides: any;
+
   constructor(public navCtrl: NavController) {
 
+    this.selectedSegment = 'first';
+    this.slides = [
+      {
+        id: "first",
+        title: "First Slide"
+      },
+      {
+        id: "second",
+        title: "Second Slide"
+      }
+    ];
+
+  }
+
+  onSegmentChanged(segmentButton) {
+    console.log("Segment changed to", segmentButton.value);
+    const selectedIndex = this.slides.findIndex((slide) => {
+      return slide.id === segmentButton.value;
+    });
+    this.slider.slideTo(selectedIndex);
+  }
+
+  onSlideChanged(slider) {
+    console.log('Slide changed');
+   const currentSlide = this.slides[slider.getActiveIndex()];
+    this.selectedSegment = currentSlide.id;
   }
 
 }

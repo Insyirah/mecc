@@ -35,10 +35,10 @@
               <span class="choose">You can choose multiple treatment</span><br><br>
               <span class="type">Hair</span>
 
-              <ion-item *ngFor="let treatment of treatments">
+              <ion-item (click)= "picked(treatment.name,position.o)"*ngFor="let treatment of treatments; let position of o" >
                 {{treatment.name}} <a class="hours">{{treatment.hours}}</a><a class="hours">{{treatment.price}}</a>
               </ion-item>
-              <button (click)="bookAppointment()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Make Appointment</button>
+              <button  (click)="bookAppointment()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Make Appointment</button>
           </ion-slide>
       
       
