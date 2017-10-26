@@ -50,7 +50,8 @@ import {ConfirmBookingPageModule} from '../pages/confirm-booking/confirm-booking
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    
   ]
 })
 export class AppModule {}

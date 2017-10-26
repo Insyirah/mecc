@@ -3,13 +3,6 @@ import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 import {AboutPage} from '../about/about';
 import {SetDayAppointmentPage} from '../set-day-appointment/set-day-appointment';
 
-/**
- * Generated class for the TreatmentprovidersPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({selector: 'page-treatmentproviders', templateUrl: 'treatmentproviders.html'})
 export class TreatmentprovidersPage {
