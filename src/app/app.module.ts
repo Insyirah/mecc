@@ -18,6 +18,11 @@ import { SetTimeAppointmentPageModule } from "../pages/set-time-appointment/set-
 import { TreatmentprovidersPageModule } from "../pages/treatmentproviders/treatmentproviders.module";
 import { ListprovidersPageModule } from "../pages/listproviders/listproviders.module";
 import { SetDayAppointmentPageModule } from "../pages/set-day-appointment/set-day-appointment.module";
+import {LoginService} from '../pages/service/login.service';
+import {Facebook} from '@ionic-native/facebook';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {GooglePlus} from '@ionic-native/google-plus';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,7 @@ import { SetDayAppointmentPageModule } from "../pages/set-day-appointment/set-da
       scrollAssist: false,
       autoFocusAssist: false
     }),
-    NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAm08OG_hzyKatx20VRXGMh2Hd2eiKMbug' })
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,9 +60,9 @@ import { SetDayAppointmentPageModule } from "../pages/set-day-appointment/set-da
   providers: [
     StatusBar,
     SplashScreen,
-<<<<<<< HEAD
     GooglePlus,
     Facebook,
     LoginService,
+  ]
 })
 export class AppModule { }
