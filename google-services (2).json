@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "289988183944",
+    "project_id": "firebase-meccapan"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289988183944:android:2184234206ca4c0f",
+        "android_client_info": {
+          "package_name": "resolv.meccapan.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289988183944-7qkdqu0nqova3v6pnkcsbrv395hg9daq.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "289988183944-qjn0mf70348ga0ocs8de27ncah4e6j4k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "resolv.meccapan.client",
+            "certificate_hash": "47890f567f185f61e5b571b0d75092fd3a76c6c6"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmBE0riIf53_vWvE_zMu8Ouyg0D03V_Gw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
