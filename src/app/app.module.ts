@@ -7,16 +7,17 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { Facebook } from '@ionic-native/facebook';
+import {ConfirmBookingPageModule} from '../pages/confirm-booking/confirm-booking.module';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { LoginPageModule } from "../pages/login/login.module";
-import { GooglePlus } from '@ionic-native/google-plus';
-import { LoginService } from "../pages/service/login.service";
-import { HttpClientModule } from "@angular/common/http";
-import { LogInMeccapanPage } from "../pages/log-in-meccapan/log-in-meccapan";
-import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
+//import { NguiMapModule } from '@ngui/map';
+import {RegisterPageModule} from '../pages/register/register.module';
+import {StartPageModule} from '../pages/start/start.module';
+import {CreatePasswordPageModule} from '../pages/create-password/create-password.module';
+import {ConfirmationCodePageModule} from '../pages/confirmation-code/confirmation-code.module';
+import { SetTimeAppointmentPageModule } from "../pages/set-time-appointment/set-time-appointment.module";
+import { TreatmentprovidersPageModule } from "../pages/treatmentproviders/treatmentproviders.module";
+import { ListprovidersPageModule } from "../pages/listproviders/listproviders.module";
+import { SetDayAppointmentPageModule } from "../pages/set-day-appointment/set-day-appointment.module";
 
 @NgModule({
   declarations: [
@@ -25,14 +26,23 @@ import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
     ContactPage,
     HomePage,
     TabsPage,
-    LogInMeccapanPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    LoginPageModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    ListprovidersPageModule,
+    TreatmentprovidersPageModule,
+    SetTimeAppointmentPageModule,
+    SetDayAppointmentPageModule,  
+    ConfirmBookingPageModule,
+    RegisterPageModule,     
+    StartPageModule,
+    CreatePasswordPageModule,
+    ConfirmationCodePageModule,
+    IonicModule.forRoot(MyApp, {
+      scrollAssist: false,
+      autoFocusAssist: false
+    }),
+    NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAm08OG_hzyKatx20VRXGMh2Hd2eiKMbug' })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,15 +51,13 @@ import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
     ContactPage,
     HomePage,
     TabsPage,
-    LogInMeccapanPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+<<<<<<< HEAD
     GooglePlus,
     Facebook,
     LoginService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler }
-  ]
 })
 export class AppModule { }

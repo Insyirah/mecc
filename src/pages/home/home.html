@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Treatment</ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,9 +9,11 @@
   <ion-row>
     <ion-item >
         <h6>Face</h6>
-    <ion-scroll scrollX="true" >
+    <ion-scroll scrollX="false"  >
         <div>
-          <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()" />
+          <img src="{{avatar.img}}" (click)="test()" *ngFor="let avatar of avatars" />
+          <!-- <a>{{avatar.category}}</a> -->
+
         </div>
     </ion-scroll>
     </ion-item>
@@ -38,7 +40,4 @@
             </ion-scroll>
             </ion-item>
           </ion-row>
-     
-     
-
     </ion-content>

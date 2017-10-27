@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {AboutPage} from '../about/about';
+import { ListprovidersPage } from '../listproviders/listproviders';
 
 
 
@@ -25,7 +27,7 @@ this.avatars = [
 }
 
 test(){
-  alert("hoi")
+  this.navCtrl.push(ListprovidersPage)
 }
 
 }

@@ -1,0 +1,80 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Provider's Name</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-segment color="primary" [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
+        <ion-segment-button value="first">
+          TREATMENTS
+        </ion-segment-button>
+    
+        <ion-segment-button value="second">
+          ABOUT
+        </ion-segment-button>
+
+        <ion-segment-button value="third">
+          REVIEWS
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
+          <ion-slide>
+            <br>
+              <span class="select">Select the treatments</span><br>
+              <span class="choose">You can choose multiple treatment</span><br><br>
+              <span class="type">Hair</span>
+
+              <ion-item (click)= "picked(treatment.name,position.o)"*ngFor="let treatment of treatments; let position of o" >
+                {{treatment.name}} <a class="hours">{{treatment.hours}}</a><a class="hours">{{treatment.price}}</a>
+              </ion-item>
+              <button  (click)="bookAppointment()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Make Appointment</button>
+          </ion-slide>
+
+          <ion-slide>
+
+              <ion-slides pager="true" parallax="true">
+                  <ion-slide>
+                    <img src="assets/1.jpg">
+                  </ion-slide>
+                  <ion-slide>
+                    <img src="assets/1.jpg">
+                  </ion-slide>
+                  <ion-slide>
+                    <img src="assets/1.jpg">
+                  </ion-slide>
+                </ion-slides>
+            <ion-item>
+                
+              <h2><b>Vida Hair</b></h2>
+              <button class="button" ion-button color="rate">4.2
+                <ion-icon name="star-half" ios="ios-star-half" md="md-star-half" class="rate"></ion-icon>
+              </button>
+              <span class="review">3 Reviews</span>
+            </ion-item>
+            <ion-row align="center">
+              <ion-col>
+                <ion-item>
+                  <ion-icon name="time" ios="ios-time" md="md-time" class="time"></ion-icon><br>
+                  <h5 style="padding-left:9%;">10am-6pm</h5>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-icon name="logo-usd" ios="logo-usd" md="logo-usd" class="usd"></ion-icon><br>
+                  <h5 style="padding-left:9%;">Great price</h5>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <h5 class="description">Trend Setters is a full-service beauty salon dedicated to consistently providing high customer satisfaction by rendering excellent service, quality products, and furnishing an enjoyable atmosphere at an acceptable price/value relationship. We will also maintain a friendly, fair, and creative work environment, which respects diversity, ideas, and hard work.</h5>
+          </ion-slide>
+
+          <ion-slide>
+              review
+            </ion-slide>
+        </ion-slides>
+
+</ion-content>
