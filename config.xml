@@ -79,8 +79,8 @@
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
-        <variable name="APP_ID" value="1243988242414742" />
-        <variable name="APP_NAME" value="MECCAPAN" />
+        <variable name="APP_ID" value="1753441301624941" />
+        <variable name="APP_NAME" value="Mecappan" />
     </plugin>
     <plugin name="cordova-plugin-googleplus" spec="^5.1.1">
         <variable name="REVERSED_CLIENT_ID" value="AIzaSyBmBE0riIf53_vWvE_zMu8Ouyg0D03V_Gw" />
