@@ -12,6 +12,8 @@ import { ListprovidersPage } from '../listproviders/listproviders';
 export class HomePage {
   avatars : any[];
   ava:any[];
+  calendar:Date = new Date()
+  markDisabled:any
 constructor(public navCtrl : NavController) {
 
 this.avatars = [
@@ -23,8 +25,10 @@ this.avatars = [
   {category:'1',img:"assets/dino.jpg"},
 ];
 
-
-}
+this.markDisabled = (date: Date) => {
+  var current = new Date();
+  return date < current;
+};}
 
 test(){
   this.navCtrl.push(ListprovidersPage)

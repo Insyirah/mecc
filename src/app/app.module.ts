@@ -24,6 +24,8 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {GooglePlus} from '@ionic-native/google-plus';
 
+import { NgCalendarModule } from 'ionic2-calendar';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -33,6 +35,7 @@ import {GooglePlus} from '@ionic-native/google-plus';
     TabsPage,
   ],
   imports: [
+    NgCalendarModule,
     BrowserModule,
     ListprovidersPageModule,
     TreatmentprovidersPageModule,
