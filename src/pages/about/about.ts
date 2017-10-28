@@ -10,9 +10,11 @@ export class AboutPage {
   @ViewChild('mySlider')slider : Slides;
   selectedSegment: string;
   slides: any;
+  providerr:any;
+  completed:any;
 
   constructor(public navCtrl: NavController) {
-
+    
     this.selectedSegment = 'first';
     this.slides = [
       {
@@ -23,6 +25,16 @@ export class AboutPage {
         id: "second",
         title: "Second Slide"
       }
+    ];
+
+    this.providerr = [
+      {name:'Johny Saloons',treatment:"Eyelashes, Haircut",date:"March 20,2PM"},
+      {name:'Johny Saloons',treatment:"Rebonding",date:"date"},
+      {name:'Johny Saloons',treatment:"Rebonding",date:"date"},
+    ];
+
+    this.completed = [
+      {name:'Johny Saloons',treatment:"Eyelashes, Haircut",date:"Wednesday, March 20, 2PM"},
     ];
 
   }

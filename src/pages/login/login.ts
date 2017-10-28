@@ -55,8 +55,9 @@ export class LoginPage {
       this.userData = { email: y.email, name: y.displayName, uId: y.userId, type: 2 }
       console.log(y)
       this.loginGoogle(this.userData)
-    }).catch(() =>
-      alert("error"))
+    }).catch((x) =>
+      console.log(x)
+    )
   }
 
   

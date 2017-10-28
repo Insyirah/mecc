@@ -23,6 +23,9 @@ import {Facebook} from '@ionic-native/facebook';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {GooglePlus} from '@ionic-native/google-plus';
+import {LoginPageModule} from '../pages/login/login.module';
+import {HttpClientModule} from '@angular/common/http';
+import {LogInMeccapanPage} from '../pages/log-in-meccapan/log-in-meccapan';
 
 @NgModule({
   declarations: [
@@ -31,9 +34,11 @@ import {GooglePlus} from '@ionic-native/google-plus';
     ContactPage,
     HomePage,
     TabsPage,
+    LogInMeccapanPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ListprovidersPageModule,
     TreatmentprovidersPageModule,
     SetTimeAppointmentPageModule,
@@ -43,6 +48,8 @@ import {GooglePlus} from '@ionic-native/google-plus';
     StartPageModule,
     CreatePasswordPageModule,
     ConfirmationCodePageModule,
+    LoginPageModule,
+    
     IonicModule.forRoot(MyApp, {
       scrollAssist: false,
       autoFocusAssist: false
@@ -56,6 +63,7 @@ import {GooglePlus} from '@ionic-native/google-plus';
     ContactPage,
     HomePage,
     TabsPage,
+    LogInMeccapanPage
   ],
   providers: [
     StatusBar,
