@@ -4,14 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
-        <calendar 
-        [currentDate]="calendar"
-        [markDisabled]= "markDisabled"
-    
-        step="30">
-      </calendar>
   <ion-row>
     <ion-item >
         <h6>Face</h6>
@@ -25,25 +18,25 @@
     </ion-item>
   </ion-row>
 
-      <ion-row>
-          <ion-item >
-              <h6>Hair</h6>
-          <ion-scroll scrollX="true" >
-              <div>
-                <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()" />
-              </div>
-          </ion-scroll>
-          </ion-item>
-        </ion-row>
+    <ion-row>
+        <ion-item >
+            <h6>Hair</h6>
+        <ion-scroll scrollX="true" >
+            <div>
+            <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()" />
+            </div>
+        </ion-scroll>
+        </ion-item>
+    </ion-row>
 
-        <ion-row>
-            <ion-item >
-                <h6>Body</h6>
-            <ion-scroll scrollX="true" scroll-avatar>
-                <div>
-                  <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()" class="scroll-item"/>
-                </div>
-            </ion-scroll>
-            </ion-item>
-          </ion-row>
-    </ion-content>
+    <ion-row>
+        <ion-item >
+            <h6>Body</h6>
+        <ion-scroll scrollX="true" scroll-avatar>
+            <div>
+                <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()" class="scroll-item"/>
+            </div>
+        </ion-scroll>
+        </ion-item>
+        </ion-row>
+</ion-content>
