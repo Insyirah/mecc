@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar >
     <ion-title>Providers</ion-title>
   </ion-navbar>
 </ion-header>
@@ -19,12 +19,25 @@
 
   <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
     <ion-slide>
+        <ion-row>
+            <ion-col col-10 class="search">
+            <ion-searchbar color="primary" placeholder="Search">
+            </ion-searchbar>
+          </ion-col>
+          <ion-col col-2 class="butang">
+            <ion-buttons end>
+                <button ion-button icon-only>
+                  <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+                </button>
+              </ion-buttons>
+            </ion-col>
+        </ion-row>
         <ion-item no-padding  *ngFor="let provider of providers" (click)="goTreatment()">
             <ion-thumbnail item-left>
               <ion-img class="defaultStore"></ion-img>
             </ion-thumbnail>
-            <h2>{{provider.name}}</h2>
-            <p>{{provider.address}}</p>
+            <h2>{{provider.name}}<ion-icon color="primary" style="padding-left:40%" name="logo-usd" ios="logo-usd" md="logo-usd" class="usd" item-end></ion-icon></h2>
+            <p>  <ion-icon ios="ios-pin-outline" md="md-pin" color="primary"></ion-icon>&nbsp;{{provider.address}}</p>
             <br>
             <!-- <ion-icon name="star" color="gold" *ngFor="let item of [1,2,3,4,5];"></ion-icon>
             <br> -->

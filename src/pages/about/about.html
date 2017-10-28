@@ -1,30 +1,55 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      Bookings
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <ion-segment color="primary" [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
-    <ion-segment-button value="first">
-      RECENT 
-    </ion-segment-button>
-
-    <ion-segment-button value="second">
-      COMPLETED
-    </ion-segment-button>
-  </ion-segment>
-
-  <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
-    <ion-slide>
-       RECENT
-    </ion-slide>
-
-
-    <ion-slide>
-      COMPLETED
-    </ion-slide>
-  </ion-slides>
-</ion-content>
+    <ion-navbar>
+      <ion-title>
+        Bookings
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-segment color="primary" [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
+      <ion-segment-button value="first">
+        RECENT 
+      </ion-segment-button>
+  
+      <ion-segment-button value="second">
+        COMPLETED
+      </ion-segment-button>
+    </ion-segment>
+  <br> 
+    <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
+      <ion-slide class="wrapper">
+         <img src="assets/img/12.jpg" class="pic"> 
+         <!-- <p>Johny Saloons</p>
+         <p>Eye Lashes</p>
+         <p>Wednesday, 3.00pm</p> -->
+         <ion-item no-padding  *ngFor="let providerz of providerr">
+            <ion-thumbnail item-left>
+              <ion-img src="assets/img/11.jpg" class="defaultStore"></ion-img>
+            </ion-thumbnail>
+            <h2>{{providerz.name}}</h2>
+            <p>{{providerz.treatment}}</p>
+            <p>{{providerz.date}}</p>
+            <br>
+            <!-- <ion-icon name="star" color="gold" *ngFor="let item of [1,2,3,4,5];"></ion-icon>
+            <br> -->
+            <!-- <button ion-button full color="warning" class="pull-right" (click)="requestService(agent,$event)">Book Now</button>
+            <p text-center class="distance-tag">{{agent.distance | number : '1.2-2'}} km</p> -->
+          </ion-item>
+      </ion-slide>
+  
+  
+  
+      <ion-slide>
+          <ion-item no-padding  *ngFor="let complete of completed">
+              <ion-thumbnail item-left>
+                  <ion-img src="assets/img/11.jpg" class="defaultStore"></ion-img>
+              </ion-thumbnail>
+              <h2>{{complete.name}}</h2>
+              <p>{{complete.treatment}}</p>
+              <p>{{complete.date}}</p>
+              </ion-item>
+      </ion-slide>
+    </ion-slides>
+  </ion-content>
+  

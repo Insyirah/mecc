@@ -25,10 +25,11 @@ this.avatars = [
   {category:'1',img:"assets/dino.jpg"},
 ];
 
-this.markDisabled = (date: Date) => {
-  var current = new Date();
-  return date < current;
-};}
+// this.markDisabled = (date: Date) => {
+//   var current = new Date();
+//   return date < current;
+// };
+}
 
 test(){
   this.navCtrl.push(ListprovidersPage)
