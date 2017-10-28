@@ -7,25 +7,24 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { ListprovidersPage } from '../pages/listproviders/listproviders'
-import { TreatmentprovidersPage } from '../pages/treatmentproviders/treatmentproviders'
-
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import {SetTimeAppointmentPage} from '../pages/set-time-appointment/set-time-appointment';
-import {SetDayAppointmentPage} from '../pages/set-day-appointment/set-day-appointment';
-import {ListprovidersPageModule} from '../pages/listproviders/listproviders.module';
-import {TreatmentprovidersPageModule} from '../pages/treatmentproviders/treatmentproviders.module';
-import {SetTimeAppointmentPageModule} from '../pages/set-time-appointment/set-time-appointment.module';
-import {SetDayAppointmentPageModule} from '../pages/set-day-appointment/set-day-appointment.module';
 import {ConfirmBookingPageModule} from '../pages/confirm-booking/confirm-booking.module';
 
-import { NguiMapModule } from '@ngui/map';
+//import { NguiMapModule } from '@ngui/map';
 import {RegisterPageModule} from '../pages/register/register.module';
 import {StartPageModule} from '../pages/start/start.module';
 import {CreatePasswordPageModule} from '../pages/create-password/create-password.module';
 import {ConfirmationCodePageModule} from '../pages/confirmation-code/confirmation-code.module';
+import { SetTimeAppointmentPageModule } from "../pages/set-time-appointment/set-time-appointment.module";
+import { TreatmentprovidersPageModule } from "../pages/treatmentproviders/treatmentproviders.module";
+import { ListprovidersPageModule } from "../pages/listproviders/listproviders.module";
+import { SetDayAppointmentPageModule } from "../pages/set-day-appointment/set-day-appointment.module";
+import {LoginService} from '../pages/service/login.service';
+import {Facebook} from '@ionic-native/facebook';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {GooglePlus} from '@ionic-native/google-plus';
+
+import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
   declarations: [
@@ -36,6 +35,7 @@ import {ConfirmationCodePageModule} from '../pages/confirmation-code/confirmatio
     TabsPage,
   ],
   imports: [
+    NgCalendarModule,
     BrowserModule,
     ListprovidersPageModule,
     TreatmentprovidersPageModule,
@@ -50,7 +50,7 @@ import {ConfirmationCodePageModule} from '../pages/confirmation-code/confirmatio
       scrollAssist: false,
       autoFocusAssist: false
     }),
-    NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAm08OG_hzyKatx20VRXGMh2Hd2eiKMbug' })
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,8 +63,9 @@ import {ConfirmationCodePageModule} from '../pages/confirmation-code/confirmatio
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    
+    GooglePlus,
+    Facebook,
+    LoginService,
   ]
 })
-export class AppModule {}
+export class AppModule { }
