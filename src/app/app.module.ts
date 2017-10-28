@@ -27,6 +27,8 @@ import {LoginPageModule} from '../pages/login/login.module';
 import {HttpClientModule} from '@angular/common/http';
 import {LogInMeccapanPage} from '../pages/log-in-meccapan/log-in-meccapan';
 
+import { NgCalendarModule } from 'ionic2-calendar';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,6 +39,7 @@ import {LogInMeccapanPage} from '../pages/log-in-meccapan/log-in-meccapan';
     LogInMeccapanPage
   ],
   imports: [
+    NgCalendarModule,
     BrowserModule,
     HttpClientModule,
     ListprovidersPageModule,
