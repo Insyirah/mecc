@@ -8,30 +8,28 @@
 
 
 <ion-content padding>
- <div style="padding-top:50%;">
-  <ion-grid>   
-      <ion-row>
-
-  <button ion-button icon-left full margin-top color="facebook">
+    <div style="padding-top:50%;">
+        <ion-grid>
+            <ion-row>
+                <button (click)="SignInStandBy('FACEBOOK')" ion-button icon-left full margin-top color="facebook">
         <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>Sign In with Facebook
   </button>
-          </ion-row> 
-              <ion-row>
-
-  <button ion-button icon-left full margin-top color="google">
+            </ion-row>
+            <ion-row>
+                <button (click)="SignInStandBy('GOOGLE')" ion-button icon-left full margin-top color="google">
         <ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>Sign in with Google
   </button>
-          </ion-row> 
-      <ion-row>
-          <ion-col>
-                <button (click)="goSignIn()" ion-button color="primary" type="submit" class="submitButton" full >SIGN IN</button>
-              </ion-col>
-              <ion-col>
-              <button (click)="goRegister()" ion-button color="primary" type="submit" class="submitButton" full >REGISTER</button>
-                  </ion-col>
-      </ion-row>
-</ion-grid>
- </div>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <button (click)="goSignIn()" ion-button color="primary" type="submit" class="submitButton" full>SIGN IN</button>
+                </ion-col>
+                <ion-col>
+                    <button (click)="goRegister()" ion-button color="primary" type="submit" class="submitButton" full>REGISTER</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 
 
 

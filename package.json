@@ -30,7 +30,6 @@
         "@types/googlemaps": "^3.29.2",
         "cordova-android": "^6.2.3",
         "cordova-plugin-device": "^1.1.4",
-        "cordova-plugin-facebook4": "^1.9.1",
         "cordova-plugin-googleplus": "^5.1.1",
         "cordova-plugin-ionic-webview": "^1.1.11",
         "cordova-plugin-splashscreen": "^4.0.3",
@@ -42,7 +41,8 @@
         "ionicons": "3.0.0",
         "rxjs": "5.4.3",
         "sw-toolbox": "3.6.0",
-        "zone.js": "0.8.18"
+        "zone.js": "0.8.18",
+        "cordova-plugin-facebook4": "^1.9.1"
     },
     "devDependencies": {
         "@ionic/app-scripts": "3.0.0",
@@ -57,10 +57,10 @@
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-googleplus": {
-                "REVERSED_CLIENT_ID": "AIzaSyBmBE0riIf53_vWvE_zMu8Ouyg0D03V_Gw"
+                "REVERSED_CLIENT_ID": "AIzaSyBxDF5X1M2eePAnFrqzZIrD5QtpJGv-N44"
             },
             "cordova-plugin-facebook4": {
-                "APP_ID": "1243988242414742",
+                "APP_ID": "419430035121980",
                 "APP_NAME": "MECCAPAN"
             }
         },
