@@ -12,8 +12,7 @@ import { ListprovidersPage } from '../listproviders/listproviders';
 export class HomePage {
   avatars : any[];
   ava:any[];
-  calendar:Date = new Date()
-  markDisabled:any
+  
 constructor(public navCtrl : NavController) {
 
 this.avatars = [

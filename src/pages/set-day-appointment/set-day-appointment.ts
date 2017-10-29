@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {SetTimeAppointmentPage} from '../set-time-appointment/set-time-appointment';
 
-/**
- * Generated class for the SetDayAppointmentPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-set-day-appointment',
@@ -16,7 +9,17 @@ import {SetTimeAppointmentPage} from '../set-time-appointment/set-time-appointme
 })
 export class SetDayAppointmentPage {
 
+  calendar:Date = new Date()
+  markDisabled:any
+  // calendar: any
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.calendar = new Date()
+    this.markDisabled = (date: Date) => {
+      var current = new Date();
+      return date < current;
+    };
   }
 
   ionViewDidLoad() {
@@ -28,3 +31,4 @@ export class SetDayAppointmentPage {
   }
 
 }
+

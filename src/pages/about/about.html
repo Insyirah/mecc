@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar >
       <ion-title>
         Bookings
       </ion-title>
@@ -19,7 +19,7 @@
   <br> 
     <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
       <ion-slide class="wrapper">
-         <img src="assets/img/12.jpg" class="pic"> 
+         <!-- <img src="assets/1.jpg" class="pic">  -->
          <!-- <p>Johny Saloons</p>
          <p>Eye Lashes</p>
          <p>Wednesday, 3.00pm</p> -->
@@ -28,7 +28,7 @@
               <ion-img src="assets/img/11.jpg" class="defaultStore"></ion-img>
             </ion-thumbnail>
             <h2>{{providerz.name}}</h2>
-            <p>{{providerz.treatment}}</p>
+            <p>{{providerz.treatment}}<ion-icon *ngIf="providerz.status==1" style="padding-left:30%;color:darkgreen;zoom:2.0;"ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon></p>
             <p>{{providerz.date}}</p>
             <br>
             <!-- <ion-icon name="star" color="gold" *ngFor="let item of [1,2,3,4,5];"></ion-icon>
@@ -46,7 +46,7 @@
                   <ion-img src="assets/img/11.jpg" class="defaultStore"></ion-img>
               </ion-thumbnail>
               <h2>{{complete.name}}</h2>
-              <p>{{complete.treatment}}</p>
+              <p>{{complete.treatment}}<ion-icon style="padding-left:30%;color:darkgreen;zoom:2.0;"ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon></p>
               <p>{{complete.date}}</p>
               </ion-item>
       </ion-slide>

@@ -25,7 +25,7 @@
             </ion-searchbar>
           </ion-col>
           <ion-col col-2 class="butang">
-            <ion-buttons end>
+            <ion-buttons end (click)="filterType()">
                 <button ion-button icon-only>
                   <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
                 </button>
@@ -48,12 +48,15 @@
 
 
     <ion-slide>
-       
+        <ngui-map center="[3.135111,101.684282]" mapTypeControl="false" streetViewControl="false" fullscreenControl="false" style="height:90vh">
+            <marker [position]="marker"></marker>
+          
+          </ngui-map>
+          
     </ion-slide>
-    map
+   
+    
   </ion-slides>
-  <!-- <ngui-map center="[3.135111,101.684282]" mapTypeControl="false" streetViewControl="false" fullscreenControl="false" style="height:60vh">
-      <marker [position]="marker"></marker>
-    </ngui-map> -->
+
     
 </ion-content>

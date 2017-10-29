@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
 import {RegisterPage} from '../register/register';
 import {HomePage} from '../home/home';
 import {TabsPage} from '../tabs/tabs';
+import {SignInPage} from '../sign-in/sign-in';
 
 /**
  * Generated class for the StartPage page.
@@ -18,7 +19,7 @@ import {TabsPage} from '../tabs/tabs';
 })
 export class StartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -30,7 +31,11 @@ export class StartPage {
   }
 
   goSignIn(){
-    this.navCtrl.setRoot(TabsPage)
+    let myModal = this.modalCtrl.create(SignInPage,{
+      planCase: "userName"
+    });
+    myModal.present();
+    // this.navCtrl.setRoot(SignInPage)
   }
 
 }

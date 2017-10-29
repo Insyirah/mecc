@@ -14,7 +14,7 @@
 <ion-content padding>
   
   <ion-item *ngFor="let book of bookings">
-      {{book.provider}}<br><br>
+      <b>{{book.provider}}</b><br><br>
     
       <span>
           <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;{{book.date}}

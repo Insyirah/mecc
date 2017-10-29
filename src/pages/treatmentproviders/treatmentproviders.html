@@ -24,9 +24,9 @@
       <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
           <ion-slide>
             <br>
-              <span class="select">Select the treatments</span><br>
-              <span class="choose">You can choose multiple treatment</span><br><br>
-              <span class="type">Hair</span>
+              <span style="font-size:90%">Select the treatments</span><br>
+              <span style="font-size:80%">You can choose multiple treatment</span><br><br><hr>
+              <span style="font-size:80%"><b>Hair</b></span>
 
               <ion-item (click)= "picked(treatment.name,position.o)"*ngFor="let treatment of treatments; let position of o" >
                 {{treatment.name}} <a class="hours">{{treatment.hours}}</a><a class="hours">{{treatment.price}}</a>
@@ -69,7 +69,21 @@
                 </ion-item>
               </ion-col>
             </ion-row>
-            <h5 class="description">Trend Setters is a full-service beauty salon dedicated to consistently providing high customer satisfaction by rendering excellent service, quality products, and furnishing an enjoyable atmosphere at an acceptable price/value relationship. We will also maintain a friendly, fair, and creative work environment, which respects diversity, ideas, and hard work.</h5>
+            <h5 class="description">Trend Setters is a full-service beauty salon dedicated to consistently providing high customer satisfaction by rendering excellent service, quality products, and furnishing an enjoyable atmosphere at an acceptable price/value relationship. </h5>
+            <hr>
+            <ngui-map center="[3.135111,101.684282]" mapTypeControl="false" streetViewControl="false" fullscreenControl="false" style="height:50vh">
+                <marker [position]="marker"></marker>
+            </ngui-map>
+           <span style="font-size:70%;"> <ion-icon ios="ios-pin-outline" md="md-pin" color="primary"></ion-icon>&nbsp;Jalan Merdeka, Kuala Lumpur</span><br><br>
+           <span style="padding-right:33%;font-size:90%;"><b>Contact Information</b></span><hr>
+           <ion-item>
+              <ion-icon color="primary" ios="ios-call" md="md-call" item-left></ion-icon>
+              <ion-input placeholder="019-99909167"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon color="primary" name="mail" item-left></ion-icon>
+                <ion-input placeholder="sal@gmail.com"></ion-input>
+              </ion-item>
           </ion-slide>
 
           <ion-slide>

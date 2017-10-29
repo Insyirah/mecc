@@ -28,12 +28,10 @@ export class AboutPage {
     ];
 
     this.providerr = [
-      {name:'Johny Saloons',treatment:"Eyelashes, Haircut",date:"Wednesday, March 20, 2PM"},
-      {name:'Johny Saloons',treatment:"Rebonding",date:"date"},
-      {name:'Johny Saloons',treatment:"Rebonding",date:"date"},
-      {name:'Johny Saloons',treatment:"Rebonding",date:"date"},
-      {name:'Johny Saloons',treatment:"Rebonding",date:"date"},
-      {name:'Johny Saloons',treatment:"Rebonding",date:"date"},
+      {name:'Johny Saloons',treatment:"Eyelashes, Haircut",date:"Wednesday, March 20, 2PM",status:1},
+      {name:'Johny Saloons',treatment:"Rebonding",date:"date",status:2},
+      {name:'Johny Saloons',treatment:"Rebonding",date:"date",status:3},
+
     ];
 
     this.completed = [

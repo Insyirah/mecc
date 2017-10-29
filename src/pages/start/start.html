@@ -8,27 +8,31 @@
 
 
 <ion-content padding>
-  <ion-item>
-      <ion-label floating>Username</ion-label>
-      <ion-input></ion-input>
-  </ion-item>
+ <div style="padding-top:50%;">
+  <ion-grid>   
+      <ion-row>
 
-  <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input></ion-input>
-  </ion-item>
-
-
-  
-  <button (click)="goSignIn()" ion-button color="primary" type="submit" class="submitButton" block margin-top>SIGN IN</button>
-  <button (click)="goRegister()" ion-button color="primary" type="submit" class="submitButton" full margin-top>REGISTER</button>
-  <button ion-button icon-left full margin-top color="secondary">
-        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
-        Sign In with Facebook
+  <button ion-button icon-left full margin-top color="facebook">
+        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>Sign In with Facebook
   </button>
-  <button ion-button icon-left full margin-top color="primary">
-      <ion-icon ios="logo-google" md="logo-google"></ion-icon>
-      Sign In with Google
-</button>
+          </ion-row> 
+              <ion-row>
+
+  <button ion-button icon-left full margin-top color="google">
+        <ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>Sign in with Google
+  </button>
+          </ion-row> 
+      <ion-row>
+          <ion-col>
+                <button (click)="goSignIn()" ion-button color="primary" type="submit" class="submitButton" full >SIGN IN</button>
+              </ion-col>
+              <ion-col>
+              <button (click)="goRegister()" ion-button color="primary" type="submit" class="submitButton" full >REGISTER</button>
+                  </ion-col>
+      </ion-row>
+</ion-grid>
+ </div>
+
+
 
 </ion-content>
