@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {SetTimeAppointmentPage} from '../set-time-appointment/set-time-appointment';
+import { SetTimeAppointmentPage } from '../set-time-appointment/set-time-appointment';
+import { CalendarComponentOptions, DayConfig } from "ion2-calendar/dist";
 
 @IonicPage()
 @Component({
@@ -8,25 +9,54 @@ import {SetTimeAppointmentPage} from '../set-time-appointment/set-time-appointme
   templateUrl: 'set-day-appointment.html',
 })
 export class SetDayAppointmentPage {
+  disableDay: Array<number> = []
+  calendar: Date = new Date()
+  date: string;
+  calenderDefault: any = {
+    todayDate: new Date(),//ngmodel
+    dateOutputType: 'string',
+    dateOutputFormat: 'YYYY-DD-MM'
+  }
+  daysDisable: DayConfig[] = [];
+  CalendarOptions: CalendarComponentOptions = {
+    daysConfig: this.daysDisable,
+    showToggleButtons: true,
+    disableWeeks: this.disableDay,
+    showMonthPicker: false
+  };
 
-  calendar:Date = new Date()
-  markDisabled:any
-  // calendar: any
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.CalendarOptions.disableWeeks = [5, 6]
 
-    this.calendar = new Date()
-    this.markDisabled = (date: Date) => {
-      var current = new Date();
-      return date < current;
-    };
+    this.DisableDate()
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SetDayAppointmentPage');
+
+
+
+  DisableDate() {
+    //HTTP GET(DATE[ARRAY])
+    let data = [{ date: "2017-11-13" }, { date: "2017-11-16" }, { date: "2017-11-18" }, { date: "2017-11-20" }, { date: "2017-11-22" }]
+
+    for (let i = 0; i < data.length; i++) {
+      this.daysDisable.push({
+        date: new Date(data[i].date),
+        subTitle: "FULL",
+        disable: true
+      })
+    }
   }
 
-  setTime(){
+  pickedDate(x) {
+    console.log(x);
+  }
+
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad SetDayAppointmentPage');
+  // }
+
+  setTime() {
     this.navCtrl.push(SetTimeAppointmentPage)
   }
 

@@ -7,14 +7,21 @@
 
 
 <ion-content padding>
-    <span><b>Select the day to have your appointment</b></span><br><br>
-      <calendar 
+  <span><b>Select the day to have your appointment</b></span><br><br>
+
+  <ion-calendar 
+  [options]="CalendarOptions"
+  [(ngModel)]="calenderDefault.todayDate" 
+  (onChange)="pickedDate($event)" 
+  [type]="calenderDefault.dateOutputType"
+  [format]="calenderDefault.dateOutputFormat"
+  >
+  </ion-calendar>
+  <!-- <calendar 
       [currentDate]="calendar"
       [markDisabled]= "markDisabled"
   
       step="30">
     </calendar>
-    <button (click)="setTime()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Proceed</button>
-  </ion-content>
-
-
+    <button (click)="setTime()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Proceed</button> -->
+</ion-content>

@@ -44,7 +44,30 @@ $colors: (
   google:     #dd4b39
 );
 
+@import "ionic.theme.default";
 
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
+
+ // ion2-calendar
+ // --------------------------------------------------
+ @import "../../ion2-calendar/dist/components/calendar-week.component";
+@import "../../ion2-calendar/dist/components/calendar.component";
+ @import "../../ion2-calendar/dist/components/month.component";
+ @import "../../ion2-calendar/dist/components/calendar.modal";
+ @import "../../ion2-calendar/dist/components/month-picker.component";
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
