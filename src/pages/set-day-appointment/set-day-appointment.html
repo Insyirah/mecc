@@ -12,7 +12,8 @@
   <ion-calendar 
   [options]="CalendarOptions"
   [(ngModel)]="calenderDefault.todayDate" 
-  (onChange)="pickedDate($event)" 
+  (onChange)="pickedDate($event)"
+  (monthChange)="disableMonth($event)" 
   [type]="calenderDefault.dateOutputType"
   [format]="calenderDefault.dateOutputFormat"
   >
