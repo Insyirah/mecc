@@ -6,6 +6,7 @@ import { TabsPage } from '../tabs/tabs';
 import { SignInPage } from '../sign-in/sign-in';
 import { GooglePlus } from "@ionic-native/google-plus";
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { ServiceApiProvider } from '../../providers/service-api/service-api';
 
 
 @IonicPage()
@@ -17,7 +18,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 export class StartPage {
   userData: { email: any; name: any; uId: any; type: number; };
 
-  constructor(private googlePlus: GooglePlus, private fb: Facebook, private platform: Platform, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) { }
+  constructor(private serviceApi:ServiceApiProvider,private googlePlus: GooglePlus, private fb: Facebook, private platform: Platform, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StartPage');
@@ -40,7 +41,6 @@ export class StartPage {
       else if (provider == "FACEBOOK") {
         alert("FACEBOOK")
         //this.loginFB({ email: "syafiq11a@gmail.com", name: "Syafiq", type: 3, uId: "1911575182192242" })
-
         this.SignInFacebook()
       }
     })
@@ -53,7 +53,6 @@ export class StartPage {
       console.log(y)
       this.loginGoogle(this.userData)
       this.navCtrl.setRoot(TabsPage)
-
     }).catch((c) => {
       console.log(c)
       alert("error")

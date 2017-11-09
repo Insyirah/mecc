@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { GooglePlus } from "@ionic-native/google-plus";
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-import { LoginService } from "../service/login.service";
+
 import { HomePage } from "../home/home";
-import { LogInMeccapanPage } from "../log-in-meccapan/log-in-meccapan";
+
+import { ServiceApiProvider } from '../../providers/service-api/service-api';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,13 +22,10 @@ import { LogInMeccapanPage } from "../log-in-meccapan/log-in-meccapan";
 export class LoginPage {
   userData: { email: any; name: any; uId: string; type: number; };
 
-  constructor(private loginService: LoginService, private fb: Facebook, private platform: Platform, private googlePlus: GooglePlus, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private serviceApi: ServiceApiProvider, private fb: Facebook, private platform: Platform, private googlePlus: GooglePlus, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-  }
-  goPageSingIn() {
-    this.navCtrl.push(LogInMeccapanPage)
   }
 
   SignInStandBy(provider) {
@@ -61,15 +59,15 @@ export class LoginPage {
 
   
   loginGoogle(form) {
-    this.loginService.postLoginGoogle(form).subscribe(x => {
-      if (x != null) {
-        console.log("loginGoogle Success", x)
-        this.navCtrl.setRoot(HomePage)
-      }
-      else {
-        alert("error")
-      }
-    })
+    // this.serviceApi.postLoginGoogle(form).subscribe(x => {
+    //   if (x != null) {
+    //     console.log("loginGoogle Success", x)
+    //     this.navCtrl.setRoot(HomePage)
+    //   }
+    //   else {
+    //     alert("error")
+    //   }
+    // })
   }
 
 
@@ -93,15 +91,15 @@ export class LoginPage {
   }
 
   loginFB(form) {
-    this.loginService.postLoginFacebook(form).subscribe(x => {
-      if (x != null) {
-        console.log("loginFb Success", x)
-        this.navCtrl.setRoot(HomePage)
-      }
-      else {
-        alert("error")
-      }
-    })
+    // this.serviceApi.postLoginFacebook(form).subscribe(x => {
+    //   if (x != null) {
+    //     console.log("loginFb Success", x)
+    //     this.navCtrl.setRoot(HomePage)
+    //   }
+    //   else {
+    //     alert("error")
+    //   }
+    // })
   }
 
   SignOutFacebook() {

@@ -7,24 +7,57 @@
 </ion-header>
 
 <ion-content>
+    <form [formGroup]="profile" (ngSubmit)=updateDetail(form) padding margin-top>
     <ion-item>
-        <ion-icon color="primary" ios="ios-person" md="md-person" item-left></ion-icon>
-        <ion-input ></ion-input>
+        <!-- <ion-icon color="primary" ios="ios-person" md="md-person" item-left></ion-icon> -->
+        <ion-label stacked>Full Name</ion-label>
+        <ion-input name="fullName" formControlName="fullName" (ngModel)="userProfile.detail.fullName"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <!-- <ion-icon color="primary" name="mail" item-left></ion-icon> -->
+        <ion-label stacked>Birth-Date</ion-label>
+        <ion-input name="dateOfBirth" formControlName="dateOfBirth"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input name="email" formControlName="email"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label stacked>Gender</ion-label>
+        <ion-input name="gender" formControlName="gender"></ion-input>
+      </ion-item><br>
+
+      <ion-item>
+          <ion-label stacked>Phone Number</ion-label>
+          <ion-input name="phoneNumber" formControlName="phoneNumber"></ion-input>
+        </ion-item>
+
+   
+      <ion-item>
+          <button text-center ion-button small block color="info" type="submit">Update Profile</button>
+      </ion-item>      
+    </form>
+      <br>
+      <hr>
+
+      <h6>Self Preferences</h6>
+      <ion-item>
+          <ion-label floating>Skin Type</ion-label>
+          <ion-select (click)="setSkinType()" interface="popover" type="text">
+            <ion-option [value]="skinType.ParameterName" *ngFor="let skinType of skinTypes">{{skinType.ParameterName}} </ion-option>
+          </ion-select>
       </ion-item>
       <ion-item>
-        <ion-icon color="primary" ios="ios-card" md="md-card" item-left></ion-icon>
-        <ion-input ></ion-input>
-      </ion-item>
+        <ion-label>Hair Length</ion-label>
+        <ion-select  >
+          <ion-option >B</ion-option>
+        </ion-select>
+      </ion-item><br>
+      <hr>
       <ion-item>
-        <ion-icon color="primary" ios="ios-pin" md="md-pin" item-left></ion-icon>
-        <ion-input ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon color="primary" ios="ios-call" md="md-call" item-left></ion-icon>
-        <ion-input ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon color="primary" name="mail" item-left></ion-icon>
-        <ion-input ></ion-input>
+          <ion-icon (click)="logout()" ios="ios-exit" md="md-exit" color="primary" item-left></ion-icon>
       </ion-item>
 </ion-content>

@@ -9,25 +9,27 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ConfirmBookingPageModule } from '../pages/confirm-booking/confirm-booking.module';
-
-import { NguiMapModule } from '@ngui/map';
 import { RegisterPageModule } from '../pages/register/register.module';
 import { StartPageModule } from '../pages/start/start.module';
-import { CreatePasswordPageModule } from '../pages/create-password/create-password.module';
-import { ConfirmationCodePageModule } from '../pages/confirmation-code/confirmation-code.module';
 import { SetTimeAppointmentPageModule } from "../pages/set-time-appointment/set-time-appointment.module";
 import { TreatmentprovidersPageModule } from "../pages/treatmentproviders/treatmentproviders.module";
 import { ListprovidersPageModule } from "../pages/listproviders/listproviders.module";
 import { SetDayAppointmentPageModule } from "../pages/set-day-appointment/set-day-appointment.module";
 import { LoginService } from '../pages/service/login.service';
+import { LogInMeccapanPage } from '../pages/log-in-meccapan/log-in-meccapan';
+import { SignInPageModule } from '../pages/sign-in/sign-in.module';
+
 import { Facebook } from '@ionic-native/facebook';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GooglePlus } from '@ionic-native/google-plus';
-
 import { NgCalendarModule } from 'ionic2-calendar';
-import { LogInMeccapanPage } from '../pages/log-in-meccapan/log-in-meccapan';
-import { SignInPageModule } from '../pages/sign-in/sign-in.module';
+import { ServiceApiProvider } from '../providers/service-api/service-api';
+import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { Ng2Webstorage } from 'ng2-webstorage';
+import { NguiMapModule } from '@ngui/map';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,9 @@ import { SignInPageModule } from '../pages/sign-in/sign-in.module';
   ],
   imports: [CalendarModule,
     NgCalendarModule,
+    HttpClientModule,
+    HttpModule,
+    IonicStorageModule.forRoot(),
     BrowserModule,
     ListprovidersPageModule,
     TreatmentprovidersPageModule,
@@ -48,9 +53,8 @@ import { SignInPageModule } from '../pages/sign-in/sign-in.module';
     ConfirmBookingPageModule,
     RegisterPageModule,
     StartPageModule,
-    CreatePasswordPageModule,
-    ConfirmationCodePageModule,
     SignInPageModule,
+    Ng2Webstorage,
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBSy0GEQeCrUgJ9LvrYHUBemGUjHE1PhcU' }),
     IonicModule.forRoot(MyApp, {
       scrollAssist: false,
@@ -72,7 +76,8 @@ import { SignInPageModule } from '../pages/sign-in/sign-in.module';
     SplashScreen,
     GooglePlus,
     Facebook,
-    LoginService,
+    ServiceApiProvider,
+  
   ]
 })
 export class AppModule { }
