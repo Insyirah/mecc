@@ -52,6 +52,21 @@ export class SetDayAppointmentPage {
     console.log(x);
   }
 
+  // disableMonth(){
+    //   //check if current month is being shown
+    //   if (this.calendar.getFullYear() == this.calendar.getFullYear() && this.calendar.getMonth()){
+    //     //if current month is shown, disable only past days
+    //     for (let i = Date() ; i < this.calendar.getDate(); i++){
+    //       this.calendarDefault.disable.push(i)
+    //     }
+    //   }
+    //   else if (this.calendar.getMonth() + 2 > this.calendar.getMonth()){
+    //     for (let i = 1; i < 31; i++){
+    //       this.calendarDefault.disable.push(i)
+    //     }
+    //   }
+    // }
+
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad SetDayAppointmentPage');
   // }
