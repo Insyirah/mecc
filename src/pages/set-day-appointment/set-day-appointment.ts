@@ -9,6 +9,7 @@ import { CalendarComponentOptions, DayConfig } from "ion2-calendar/dist";
   templateUrl: 'set-day-appointment.html',
 })
 export class SetDayAppointmentPage {
+  selectedDate: any;
   disableDay: Array<number> = []
   calendar: Date = new Date()
   date: string;
@@ -31,10 +32,6 @@ export class SetDayAppointmentPage {
 
     this.DisableDate()
   }
-
-
-
-
   DisableDate() {
     //HTTP GET(DATE[ARRAY])
     let data = [{ date: "2017-11-13" }, { date: "2017-11-16" }, { date: "2017-11-18" }, { date: "2017-11-20" }, { date: "2017-11-22" }]
@@ -43,21 +40,25 @@ export class SetDayAppointmentPage {
       this.daysDisable.push({
         date: new Date(data[i].date),
         subTitle: "FULL",
-        disable: true
+        disable: true,
+        // marked:true
       })
     }
   }
 
   pickedDate(x) {
-    console.log(x);
+    this.selectedDate = x
+    console.log("d",this.selectedDate)
   }
 
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad SetDayAppointmentPage');
   // }
 
-  setTime() {
-    this.navCtrl.push(SetTimeAppointmentPage)
+  setTime(x) {
+    this.navCtrl.push(SetTimeAppointmentPage,{
+      date : this.selectedDate
+    })
   }
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {AboutPage} from '../about/about';
 import { ListprovidersPage } from '../listproviders/listproviders';
+import { ServiceApiProvider } from '../../providers/service-api/service-api';
 
 
 
@@ -10,10 +11,16 @@ import { ListprovidersPage } from '../listproviders/listproviders';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  bodyTreatment: any[];
+  hairTreatment: Array<any>;
+  faceTreatment: any[];
+  providerId: any;
+  form: {};
+  treatmentProvidedDetailID: number;
   avatars : any[];
   ava:any[];
   
-constructor(public navCtrl : NavController) {
+constructor(private serviceApi : ServiceApiProvider,public navCtrl : NavController) {
 
 this.avatars = [
   {category:'1',img:"assets/dino.jpg"},
@@ -24,14 +31,61 @@ this.avatars = [
   {category:'1',img:"assets/dino.jpg"},
 ];
 
-// this.markDisabled = (date: Date) => {
-//   var current = new Date();
-//   return date < current;
-// };
 }
+
+ionViewDidLoad(){
+  this.getFaceTreatment()
+  this.getHairTreatment()
+  this.getBodyTreatment()
+}
+
+getFaceTreatment(){
+  this.form={
+    moduleName : "UserApplication",
+    masterName : "List Of Face Treatment"
+  }
+  this.serviceApi.getFaceTreatment(this.form).subscribe(data => {
+   this.faceTreatment = data
+   console.log("faceTreatment",this.faceTreatment) 
+  }) 
+}
+
+getHairTreatment(){
+  this.form={
+    moduleName : "UserApplication",
+    masterName : "List Of Hair Treatment"
+  }
+  this.serviceApi.getHairTreatment(this.form).subscribe(data => {
+   this.hairTreatment = data.masterData
+   console.log("hairTreatment",this.hairTreatment) 
+  }) 
+}
+
+goHairTreatmentProvider(MasterDataMaintenanceItemID){
+  this.navCtrl.push(ListprovidersPage,{
+    treatmentHairId:MasterDataMaintenanceItemID
+  })
+}
+
+getBodyTreatment(){
+  this.form={
+    moduleName : "UserApplication",
+    masterName : "List Of Body Treatment"
+  }
+  this.serviceApi.getBodyTreatment(this.form).subscribe(data => {
+   this.bodyTreatment = data
+   console.log("bodyTreatment",this.bodyTreatment) 
+  }) 
+}
+
 
 test(){
-  this.navCtrl.push(ListprovidersPage)
+  
+  this.providerId=9
+  this.navCtrl.push(ListprovidersPage,{
+    providerID:this.providerId
+  });
 }
 
 }
+

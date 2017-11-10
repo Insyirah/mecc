@@ -16,8 +16,7 @@
         <h6>Face</h6>
     <ion-scroll scrollX="true"  >
         <div>
-          <img src="{{avatar.img}}" (click)="test()" *ngFor="let avatar of avatars" />
-          <!-- <a>{{avatar.category}}</a> -->
+          <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()"  />
         </div>
     </ion-scroll>
     </ion-item>
@@ -28,7 +27,7 @@
             <h6>Hair</h6>
         <ion-scroll scrollX="true" >
             <div>
-            <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()" />
+            <img src="{{treatment.ParameterIcon}}"  *ngFor="let treatment of hairTreatment" (click)="goHairTreatmentProvider(treatment.MasterDataMaintenanceItemID)" />
             </div>
         </ion-scroll>
         </ion-item>

@@ -16,9 +16,12 @@ import {ConfirmBookingPage} from '../confirm-booking/confirm-booking';
   templateUrl: 'set-time-appointment.html',
 })
 export class SetTimeAppointmentPage {
+  bookDate: any;
 times : any []
 constructor(public navCtrl : NavController, public navParams : NavParams) {
 
+  this.bookDate = this.navParams.get("date")
+  console.log("bookDate",this.bookDate)
     this.times = [
       {
         date: 'Wednesday,20 March',
@@ -40,6 +43,7 @@ constructor(public navCtrl : NavController, public navParams : NavParams) {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SetTimeAppointmentPage');
+    
   }
 
   setTime(){

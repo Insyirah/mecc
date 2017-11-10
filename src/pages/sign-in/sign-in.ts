@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController, Events } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms/";
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
@@ -29,7 +29,7 @@ export class SignInPage {
   submitForm: { email: any; phoneNumber: string; userName: string; password: any; type: number; };
   ph: boolean;
   emails: boolean;
-  constructor(private storage: LocalStorageService,private serviceApi : ServiceApiProvider,private view: ViewController, private fb: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public events: Events,private storage: LocalStorageService,private serviceApi : ServiceApiProvider,private view: ViewController, private fb: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
     this.logInForm = this.fb.group({
       name: [''],
       password: ['', Validators.required]
@@ -75,6 +75,8 @@ export class SignInPage {
         // console.log("ini",data)
         console.log("itu",data)
         this.storage.store("user",data)
+        this.events.publish('Login')
+    
         this.navCtrl.setRoot(TabsPage)
       }else if(data.status=="error"){
         console.log(data)

@@ -27,12 +27,14 @@ export class MyApp implements OnInit {
   }
 
   ngOnInit():void{
-    // this.user = this.storage.retrieve("user")
-    // console.log("app",this.user.status)
-    // if(this.user.status == "success"){
-    //   this.rootPage = TabsPage
-    // }else{
-    //   this.rootPage = StartPage
-    // }
+    this.user = this.storage.retrieve("user")
+    console.log("app",this.user.status)
+    if(this.user!=null){
+      if(this.user.status=="success"){
+        this.rootPage = TabsPage
+      }
+    }else{
+      this.rootPage = StartPage
+    }
   }
 }

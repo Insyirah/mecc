@@ -47,7 +47,7 @@
       <ion-item>
           <ion-label floating>Skin Type</ion-label>
           <ion-select (click)="setSkinType()" interface="popover" type="text">
-            <ion-option [value]="skinType.ParameterName" *ngFor="let skinType of skinTypes">{{skinType.ParameterName}} </ion-option>
+            <ion-option [value]="skinType.ParameterName" *ngFor="let skinType of testing| async">{{skinType.ParameterName}} </ion-option>
           </ion-select>
       </ion-item>
       <ion-item>

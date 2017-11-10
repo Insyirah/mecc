@@ -2,21 +2,31 @@ import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 import {AboutPage} from '../about/about';
 import {SetDayAppointmentPage} from '../set-day-appointment/set-day-appointment';
+import {ServiceApiProvider} from '../../providers/service-api/service-api';
 
 @IonicPage()
 @Component({selector: 'page-treatmentproviders', templateUrl: 'treatmentproviders.html'})
 export class TreatmentprovidersPage {
-test3 : any;
-o : Array < any > = []
-test2 : any;
+  submitChoosenTreatment : Array < any > = []
+  choosenForm : {
+    treatmentID: any;
+  };
+  list2 : any;
+  list1 : any;
+  treatmentList : Array < any >;
+  form : {};
+  list : any;
 
-@ViewChild('mySlider')slider : Slides;
+  checkedItems : boolean[];
+
+  @ViewChild('mySlider')slider : Slides;
   selectedSegment : string;
   slides : any;
   treatments : any[]
-  test : any[]
 
-  constructor(public navCtrl : NavController, public navParams : NavParams) {
+  checked : boolean[]
+  test : boolean = false
+  constructor(private serviceApi : ServiceApiProvider, public navCtrl : NavController, public navParams : NavParams) {
     this.selectedSegment = 'first';
     this.slides = [
       {
@@ -30,71 +40,51 @@ test2 : any;
         title: "Third Slide"
       }
     ];
-
-    this.test3=[{name:'1'}]
-
-    //panggil data this treatment
-    this.treatments = [
-      {
-        name: 'Treatment 1',
-        hours: "30min",
-        price: "Rp 50K"
-      }, {
-        name: 'Treatment 2',
-        hours: "35min",
-        price: "Rp 30K"
-      }, {
-        name: 'Treatment 3',
-        hours: "40min",
-        price: "Rp 40K"
-      }, {
-        name: 'Treatment 4',
-        hours: "37min",
-        price: "Rp 60K"
-      }
-    ];
-
-    this.createStatus(this.treatments.length)
   }
 
-  createStatus(x) {
-    for (let i = 0; i < x.length; i++) {
-      let p = {
-        index: i,
-        status: false
-      }
-      this.o.push(p)
-    }
-  }
-
-  picked(x,y) {
-    this.test ==this.test3.filter(y => {//check ada x dlm array or dia dah plih ke x
-        y.name == x
-      })
-
-      // this.test3.push(x)
-
-      
-
-    if (this.test ==[{}]) {
-      // this.o[y].status = true
-      this.test3.push(x)// first time pilih
-      console.log("test",this.test)
-    } else {
-      // this.o[y].status = false
-      this.test3.pop(x)// x nak plih dah
-      console.log("tests",this.test)
-    }
-  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad TreatmentprovidersPage');
+    this.getListTreatment()
+  }
+
+  getListTreatment() {
+    this.list1 = this.navParams.get("agentId")
+    this.list2 = this.navParams.get("treatmentProId")
+    console.log("list", this.list)
+    this.form = {
+      agentBranchID: this.list1,
+      treatmentProvidedID: this.list2
+    }
+    console.log("form", this.form)
+    this.serviceApi.getTreatmentList(this.form).subscribe(data => {
+        this.treatmentList = data.treatmentList
+        this.checkedItems = new Array(this.treatmentList.length);
+        console.log("treatmentList", this.treatmentList)
+        console.log("checkedItem", this.checkedItems)
+    })
+  }
+
+  choosenTreatment(treatmentID, status) {
+    if (status == true) {
+      this.choosenForm = {
+        treatmentID: treatmentID
+      }
+      this.submitChoosenTreatment.push(this.choosenForm)
+      console.log(this.submitChoosenTreatment)  
+      } else {
+      this.choosenForm = {
+        treatmentID: treatmentID
+      }
+      this.submitChoosenTreatment = this.submitChoosenTreatment.filter(p => {
+          return p.treatmentID != this.choosenForm.treatmentID
+      })
+      console.log("submit", this.submitChoosenTreatment)
+    }
   }
 
   onSegmentChanged(segmentButton) {
     console.log("Segment changed to", segmentButton.value);
-    const selectedIndex = this
-      .slides
-      .findIndex((slide) => {
+    const selectedIndex = this.slides.findIndex((slide) => {
         return slide.id === segmentButton.value;
       });
     this.slider.slideTo(selectedIndex);
@@ -107,9 +97,7 @@ test2 : any;
   }
 
   bookAppointment() {
-    this
-      .navCtrl
-      .push(SetDayAppointmentPage)
+    this.navCtrl.push(SetDayAppointmentPage)
   }
 
 }

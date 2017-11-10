@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, Slides, AlertController} from 'ionic-angular';
 import {TreatmentprovidersPage} from '../treatmentproviders/treatmentproviders';
+import { ServiceApiProvider } from '../../providers/service-api/service-api';
 
 @IonicPage()
 @Component({
@@ -8,13 +9,16 @@ import {TreatmentprovidersPage} from '../treatmentproviders/treatmentproviders';
   templateUrl: 'listproviders.html',
 })
 export class ListprovidersPage {
-  providers:any[];
+  show: Array<any> ;
+  providerId: any;
+  form: {};
+  providers:Array<any> ;
 
 @ViewChild('mySlider')slider : Slides;
   selectedSegment: string;
   slides: any;
   marker: any[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
+  constructor(private serviceApi : ServiceApiProvider,public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
     this.selectedSegment = 'first';
     this.slides = [
       {
@@ -27,14 +31,14 @@ export class ListprovidersPage {
       }
     ];
 
-    this.providers = [
-      {name:'Johny Saloons',address:"Jalan Permata,Bandung"},
-      {name:'Maria Saloons',address:"Taman Melawati,Melawi"},
-      {name:'Merry Saloons',address:"Bandar Tun Hussein,Selangor"},
-      {name:'John Saloons',address:"Jalan Cerah,Perak"},
-      {name:'Lo & Saloons',address:"Bandung"},
-      {name:'Johny Saloons',address:"Bandar Lama,Melawati"},
-    ];
+    // this.providers = [
+    //   {name:'Johny Saloons',address:"Jalan Permata,Bandung"},
+    //   {name:'Maria Saloons',address:"Taman Melawati,Melawi"},
+    //   {name:'Merry Saloons',address:"Bandar Tun Hussein,Selangor"},
+    //   {name:'John Saloons',address:"Jalan Cerah,Perak"},
+    //   {name:'Lo & Saloons',address:"Bandung"},
+    //   {name:'Johny Saloons',address:"Bandar Lama,Melawati"},
+    // ];
 
     this.marker = [3.135111,101.684282];
   }
@@ -42,6 +46,20 @@ export class ListprovidersPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListprovidersPage');
+    this.getListProvider()
+  }
+
+  getListProvider(){
+    this.providerId = this.navParams.get("treatmentHairId")
+    console.log("p",this.providerId)
+    this.form={
+      treatmentProvidedDetailID:this.providerId
+    }
+    this.serviceApi.getProviderList(this.form).subscribe(data => {
+      this.providers = data.branchList
+      console.log("address",this.providers[0].address)
+      console.log("provider",this.providers)
+   })
   }
 
   onSegmentChanged(segmentButton) {
@@ -54,12 +72,15 @@ export class ListprovidersPage {
 
   onSlideChanged(slider) {
     console.log('Slide changed');
-   const currentSlide = this.slides[slider.getActiveIndex()];
+    const currentSlide = this.slides[slider.getActiveIndex()];
     this.selectedSegment = currentSlide.id;
   }
 
-  goTreatment(){
-    this.navCtrl.push(TreatmentprovidersPage)
+  goTreatment(agentBranchID,treatmentProvidedID){
+    this.navCtrl.push(TreatmentprovidersPage,{
+      agentId:agentBranchID,
+      treatmentProId:treatmentProvidedID
+    })
   }
 
   filterType(){

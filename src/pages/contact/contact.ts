@@ -5,12 +5,14 @@ import { LocalStorageService } from 'ng2-webstorage';
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
 import { StartPage } from '../start/start';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
 export class ContactPage implements OnInit {
+  testing: Observable<any>;
   @ViewChild(Nav)nav : Nav;
   update: any;
   userId: any;
@@ -54,8 +56,6 @@ export class ContactPage implements OnInit {
       this.profile.controls.phoneNumber.setValue(this.userProfile.detail.phoneNumber)
       console.log("profile",this.userProfile)
       console.log("fullName",this.userProfile.detail.fullName)
-      
-      
     })
   }
 
@@ -81,17 +81,13 @@ export class ContactPage implements OnInit {
 
   }
 
-  setSkinType(){
-    alert()
+ async setSkinType(){
      this.form={
        moduleName : "UserAccount",
        masterName : "List Of Skin Type"
      }
-     this.serviceApi.getSkinType(this.form).subscribe(data => {
-      this.skinTypes = data
-      console.log(this.skinTypes)
-     
-    })
+  this.testing = this.serviceApi.getSkinType(this.form)
+  console.log(this.testing)
   }
 
   logout(){
