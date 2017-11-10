@@ -3,19 +3,31 @@
     <ion-title>Book Appointment</ion-title>
   </ion-navbar>
 </ion-header>
-//ok boleh tp trg kn cmne ko ubah
-
 
 <ion-content padding>
   <span><b>Select the day to have your appointment</b></span><br><br>
 
+  <button [disabled]="previousMonths" (click)="previousMonth()" ion-button icon-left outline class="previous">
+    <ion-icon  
+       name="arrow-dropleft" ios="ios-arrow-dropleft" md="md-arrow-dropleft"  left>
+    </ion-icon>
+  </button>
+    
+  <button ion-button class="today" round style color="primary" (click)="today()" center>Today</button>
+
+  <button [disabled]="nextmonths" (click)="nextMonth()" ion-button icon-right outline class="after">
+    <ion-icon 
+       name="arrow-dropright" ios="ios-arrow-dropright" md="md-arrow-dropright"  right>
+    </ion-icon>
+  </button>
+  
   <ion-calendar 
   [options]="CalendarOptions"
-  [(ngModel)]="calenderDefault.todayDate" 
+  [(ngModel)]="calendarDefault.todayDate" 
   (onChange)="pickedDate($event)"
-  (monthChange)="disableMonth($event)" 
-  [type]="calenderDefault.dateOutputType"
-  [format]="calenderDefault.dateOutputFormat"
+  (monthChange)="pickedMonth($event)"
+  [type]="calendarDefault.dateOutputType"
+  [format]="calendarDefault.dateOutputFormat"
   >
   </ion-calendar>
   

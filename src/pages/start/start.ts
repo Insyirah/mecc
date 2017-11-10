@@ -7,6 +7,7 @@ import { SignInPage } from '../sign-in/sign-in';
 import { GooglePlus } from "@ionic-native/google-plus";
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
+import { SetDayAppointmentPage } from '../set-day-appointment/set-day-appointment';
 
 
 @IonicPage()
@@ -18,7 +19,7 @@ import { ServiceApiProvider } from '../../providers/service-api/service-api';
 export class StartPage {
   userData: { email: any; name: any; uId: any; type: number; };
 
-  constructor(private serviceApi:ServiceApiProvider,private googlePlus: GooglePlus, private fb: Facebook, private platform: Platform, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) { }
+  constructor(private serviceApi: ServiceApiProvider, private googlePlus: GooglePlus, private fb: Facebook, private platform: Platform, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StartPage');
@@ -108,11 +109,12 @@ export class StartPage {
 
 
   goSignIn() {
-    let myModal = this.modalCtrl.create(SignInPage, {
-      planCase: "userName"
-    });
-    myModal.present();
-    // this.navCtrl.setRoot(SignInPage)
+    this.navCtrl.setRoot(SetDayAppointmentPage);
+    //   let myModal = this.modalCtrl.create(SignInPage, {
+    //     planCase: "userName"
+    //   });
+    //   myModal.present();
+    //   // this.navCtrl.setRoot(SignInPage)
+    // }
   }
-
-}
+  }
