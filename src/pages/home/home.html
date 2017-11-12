@@ -1,47 +1,48 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Treatment</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Treatment</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-        <!-- <calendar 
+    <!-- <calendar 
         [currentDate]="calendar"
         [markDisabled]= "markDisabled"
     
         step="30">
       </calendar> -->
-  <ion-row>
-    <ion-item >
-        <h6>Face</h6>
-    <ion-scroll scrollX="true"  >
-        <div>
-          <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()"  />
-        </div>
-    </ion-scroll>
-    </ion-item>
-  </ion-row>
-
     <ion-row>
-        <ion-item >
-            <h6>Hair</h6>
-        <ion-scroll scrollX="true" >
-            <div>
-            <img src="{{treatment.ParameterIcon}}"  *ngFor="let treatment of hairTreatment" (click)="goHairTreatmentProvider(treatment.MasterDataMaintenanceItemID)" />
-            </div>
-        </ion-scroll>
+        <ion-item>
+            <h6>Face</h6>
+            <ion-scroll scrollX="true">
+                <div>
+                    <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="goTreatmentProvider()" />
+                </div>
+            </ion-scroll>
         </ion-item>
     </ion-row>
 
     <ion-row>
-        <ion-item >
-            <h6>Body</h6>
-        <ion-scroll scrollX="true" scroll-avatar>
-            <div>
-                <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="test()" class="scroll-item"/>
-            </div>
-        </ion-scroll>
+        <ion-item>
+            <h6>Hair</h6>
+            <ion-scroll scrollX="true">
+                <div>
+                    <img src="{{treatment.ParameterIcon}}" *ngFor="let treatment of hairTreatment" (click)="goTreatmentProvider(treatment.MasterDataMaintenanceItemID)"
+                    />
+                </div>
+            </ion-scroll>
         </ion-item>
-        </ion-row>
+    </ion-row>
+
+    <ion-row>
+        <ion-item>
+            <h6>Body</h6>
+            <ion-scroll scrollX="true" scroll-avatar>
+                <div>
+                    <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="goTreatmentProvider()" class="scroll-item" />
+                </div>
+            </ion-scroll>
+        </ion-item>
+    </ion-row>
 
 </ion-content>
