@@ -16,7 +16,7 @@ export class ServiceApiProvider {
   url1: string;
   userId: string;
   url: string
-searchUrl:string = "http://localhost:50009/pizzaDev/api/test/"
+  searchUrl: string = "http://localhost:50009/pizzaDev/api/test/"
   host: string = "http://35.203.181.89:300/"
   constructor(public http: Http, private storage: LocalStorageService, public events: Events) {
     this.user = this.storage.retrieve("user")
