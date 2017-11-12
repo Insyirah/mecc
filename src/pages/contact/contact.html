@@ -7,6 +7,15 @@
 </ion-header>
 
 <ion-content>
+    <div padding text-center >
+        <!-- <img src="{{pathForImage(lastImage)}}" class="profPic" [hidden]="lastImage === null"> -->
+        <img src="./assets/pic.jpg" class="profPic">
+        <ion-buttons start>
+          <button ion-button color="primary"  (click)="presentActionSheet()">
+              <span style="color:white" >Change Profile Picture</span>
+            </button>
+        </ion-buttons>
+      </div>
     <form [formGroup]="profile" (ngSubmit)=updateDetail(form) padding margin-top>
     <ion-item>
         <!-- <ion-icon color="primary" ios="ios-person" md="md-person" item-left></ion-icon> -->
@@ -47,7 +56,7 @@
       <ion-item>
           <ion-label floating>Skin Type</ion-label>
           <ion-select (click)="setSkinType()" interface="popover" type="text">
-            <ion-option [value]="skinType.ParameterName" *ngFor="let skinType of testing| async">{{skinType.ParameterName}} </ion-option>
+            <ion-option [value]="skinType.ParameterName" *ngFor="let skinType of skin">{{skinType.ParameterName}} </ion-option>
           </ion-select>
       </ion-item>
       <ion-item>

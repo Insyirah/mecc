@@ -21,14 +21,13 @@ export class ServiceApiProvider {
     constructor(public http: Http,private storage: LocalStorageService,public events: Events) {
         this.user = this.storage.retrieve("user")
         console.log("user",this.user)
-        console.log("loginID",this.loginId)
         
         if (this.user == null) {
             this.loginId = 0
           }
           else {
             this.loginId = this.user.listDetail.loginID
-            console.log("userID", this.loginId)
+            console.log("loginID", this.loginId)
           }     
 
           this.events.subscribe('Login', (userEventData) => {
@@ -149,13 +148,30 @@ export class ServiceApiProvider {
           );
     }
 
-    getTreatmentList(form): Observable<any> {//treatmentproviderpage(notDone)
+    getTreatmentList(form): Observable<any> {//treatmentproviderpage(Done)
         let url = this.host + 'UserApplication/api/GetTreatmentList/'+form.agentBranchID + "/" + form.treatmentProvidedID
         console.log(url)
         return this.http.get(url)
           .map((res: Response) => res.json()
           );
     }
+
+    postBookingMain(form): Observable<any> {//treatmentproviderpage(Done)
+      let url = this.host + 'UserBooking/api/PostBookingMain/'+ 5
+      console.log(url)
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post(url, form, options)
+        .map((res: Response) => res.json());
+  }
+
+  getBookingSlot(form): Observable<any> {//treatmentproviderpage(Done)
+    let url = this.host + 'UserApplication/api/GetBookingSlotList/'
+    console.log(url)
+    return this.http.get(url)
+      .map((res: Response) => res.json()
+      );
+}
 
   
   

@@ -41,7 +41,7 @@
           <a class="hours">{{treatment.treatmentDuration}}min</a>
           <a class="hours">Rp&nbsp;{{treatment.price}}k</a>
         </ion-label>
-    <ion-checkbox [(ngModel)]="checkedItems[i]" (ionChange)="choosenTreatment(treatment.treatmentID,checkedItems[i])" color="primary"></ion-checkbox>
+    <ion-checkbox [(ngModel)]="checkedItems[i]" (ionChange)="choosenTreatment(treatment.treatmentID,checkedItems[i],treatment.agentDiscountID,treatment.agentBranchID)" color="primary"></ion-checkbox>
       </ion-item>
       <button (click)="bookAppointment()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Make Appointment</button>
     </ion-slide>
