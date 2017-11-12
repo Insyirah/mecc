@@ -1,7 +1,13 @@
-import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Slides, AlertController} from 'ionic-angular';
-import {TreatmentprovidersPage} from '../treatmentproviders/treatmentproviders';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides, AlertController, LoadingController, Loading, Events } from 'ionic-angular';
+import { TreatmentprovidersPage } from '../treatmentproviders/treatmentproviders';
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
+import { FormControl } from "@angular/forms";
+import 'rxjs/Rx';
+import { Observable } from "rxjs/Observable";
+//import { debounceTime } from 'rxjs/operator/debounceTime';
+//import { distinctUntilChanged } from 'rxjs/operator/distinctUntilChanged';
+//import { switchMap } from 'rxjs/operator/switchMap';
 
 @IonicPage()
 @Component({
@@ -9,16 +15,29 @@ import { ServiceApiProvider } from '../../providers/service-api/service-api';
   templateUrl: 'listproviders.html',
 })
 export class ListprovidersPage {
-  show: Array<any> ;
+  noProvider: boolean = true
+  firstOnly: boolean = false
+  search: Observable<string[]>;
+  loading: Loading;
+  searchType: string;
+  items: Array<string> = ["no Provider"]
+  searching: boolean = true
+  show: Array<any>;
   providerId: any;
   form: {};
-  providers:Array<any> ;
-
-@ViewChild('mySlider')slider : Slides;
+  providers: Array<any>;
+  terms = new FormControl();
+  seachInput: string;
+  @ViewChild('mySlider') slider: Slides;
   selectedSegment: string;
   slides: any;
   marker: any[];
-  constructor(private serviceApi : ServiceApiProvider,public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
+  constructor(public event: Events, public loadingCtrl: LoadingController, private serviceApi: ServiceApiProvider, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+    this.searchType = "Rating"
     this.selectedSegment = 'first';
     this.slides = [
       {
@@ -31,35 +50,55 @@ export class ListprovidersPage {
       }
     ];
 
-    // this.providers = [
-    //   {name:'Johny Saloons',address:"Jalan Permata,Bandung"},
-    //   {name:'Maria Saloons',address:"Taman Melawati,Melawi"},
-    //   {name:'Merry Saloons',address:"Bandar Tun Hussein,Selangor"},
-    //   {name:'John Saloons',address:"Jalan Cerah,Perak"},
-    //   {name:'Lo & Saloons',address:"Bandung"},
-    //   {name:'Johny Saloons',address:"Bandar Lama,Melawati"},
-    // ];
+    this.marker = [3.135111, 101.684282];
+    this.handleSearch()//utk search
+  }
 
-    this.marker = [3.135111,101.684282];
+  async handleSearch() {
+
+    this.search = this.terms.valueChanges
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .do(() => {
+        this.firstOnly == false ? this.search : this.searching = false
+      })
+      .switchMap(term => this.serviceApi.goSearch(term, this.searchType))
+
+    this.search.subscribe(x => {
+      this.searchLogic(x)
+    })
   }
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListprovidersPage');
-    this.getListProvider()
-  }
-
-  getListProvider(){
-    this.providerId = this.navParams.get("treatmentHairId")
-    console.log("p",this.providerId)
-    this.form={
-      treatmentProvidedDetailID:this.providerId
+  searchLogic(data) {
+    if (this.firstOnly == false) {
+      this.firstOnly = true
+      this.getListProvider()
+    } else {
+      this.searching = true
+      this.providers = data
+      console.log(this.providers)
+      this.providers.length == 0 ? this.noProvider = false : this.noProvider = true
     }
+  }
+
+  goSearch() {//for yg filter type
+    this.serviceApi.goSearch(this.seachInput, this.searchType)
+  }
+
+  getListProvider() {
+    this.providerId = this.navParams.get("treatmentId")
+
+    this.form = {
+      treatmentProvidedDetailID: this.providerId
+    }
+
     this.serviceApi.getProviderList(this.form).subscribe(data => {
       this.providers = data.branchList
-      console.log("address",this.providers[0].address)
-      console.log("provider",this.providers)
-   })
+      console.log("address", this.providers[0].address)
+      this.searching = true
+      this.loading.dismiss();
+    })
   }
 
   onSegmentChanged(segmentButton) {
@@ -76,14 +115,14 @@ export class ListprovidersPage {
     this.selectedSegment = currentSlide.id;
   }
 
-  goTreatment(agentBranchID,treatmentProvidedID){
-    this.navCtrl.push(TreatmentprovidersPage,{
-      agentId:agentBranchID,
-      treatmentProId:treatmentProvidedID
+  goTreatment(agentBranchID, treatmentProvidedID) {
+    this.navCtrl.push(TreatmentprovidersPage, {
+      agentId: agentBranchID,
+      treatmentProId: treatmentProvidedID
     })
   }
 
-  filterType(){
+  filterType() {
     console.log("c")
     let alert = this.alertCtrl.create({
       title: 'Please select:',
@@ -91,27 +130,27 @@ export class ListprovidersPage {
         {
           type: 'radio',
           label: 'Rating',
-          value: 'onlinePayment',
+          value: 'Rating',
           checked: true
         },
         {
           type: 'radio',
           label: 'Price low to high',
-          value: 'actCode'
+          value: 'Price low to high'
         },
         {
           type: 'radio',
           label: 'Price high to low',
-          value: 'actCode'
+          value: 'Price high to low'
         },
         {
           type: 'radio',
           label: 'Discount',
-          value: 'actCode'
+          value: 'Discount'
         }
       ],
       buttons: [
-      
+
         {
           text: "Cancel",
           handler: data => {
@@ -121,8 +160,9 @@ export class ListprovidersPage {
         {
           text: "Ok",
           handler: data => {
-            console.log("OK clicked");
-            console.log("val", data);
+            this.searchType = data
+            console.log(data)
+            this.goSearch()
           }
         }
       ]

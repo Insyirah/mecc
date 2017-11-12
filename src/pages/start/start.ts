@@ -8,6 +8,7 @@ import { GooglePlus } from "@ionic-native/google-plus";
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
 import { SetDayAppointmentPage } from '../set-day-appointment/set-day-appointment';
+import { ListprovidersPage } from "../listproviders/listproviders";
 
 
 @IonicPage()
@@ -109,12 +110,12 @@ export class StartPage {
 
 
   goSignIn() {
-    // this.navCtrl.setRoot(SignInPage);
-      let myModal = this.modalCtrl.create(SignInPage, {
-        planCase: "userName"
-      });
-      myModal.present();
-      // this.navCtrl.setRoot(SignInPage)
-    }
+    // this.navCtrl.setRoot(ListprovidersPage);
+    let myModal = this.modalCtrl.create(SignInPage, {
+      planCase: "userName"
+    });
+    myModal.present();
+    this.navCtrl.setRoot(SignInPage)
   }
-  
+
+}
