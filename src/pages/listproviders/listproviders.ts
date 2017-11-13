@@ -36,7 +36,7 @@ export class ListprovidersPage {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
-    this.loading.present();
+    // this.loading.present();
     this.searchType = "Rating"
     this.selectedSegment = 'first';
     this.slides = [
@@ -51,40 +51,41 @@ export class ListprovidersPage {
     ];
 
     this.marker = [3.135111, 101.684282];
-    this.handleSearch()//utk search
+    // this.handleSearch()//utk search
+    this.getListProvider()
   }
 
-  async handleSearch() {
+  // async handleSearch() {
 
-    this.search = this.terms.valueChanges
-      .debounceTime(300)
-      .distinctUntilChanged()
-      .do(() => {
-        this.firstOnly == false ? this.search : this.searching = false
-      })
-      .switchMap(term => this.serviceApi.goSearch(term, this.searchType))
+  //   this.search = this.terms.valueChanges
+  //     .debounceTime(300)
+  //     .distinctUntilChanged()
+  //     .do(() => {
+  //       this.firstOnly == false ? this.search : this.searching = false
+  //     })
+  //     .switchMap(term => this.serviceApi.goSearch(term, this.searchType))
 
-    this.search.subscribe(x => {
-      this.searchLogic(x)
-    })
-  }
+  //   this.search.subscribe(x => {
+  //     this.searchLogic(x)
+  //   })
+  // }
 
 
-  searchLogic(data) {
-    if (this.firstOnly == false) {
-      this.firstOnly = true
-      this.getListProvider()
-    } else {
-      this.searching = true
-      this.providers = data
-      console.log(this.providers)
-      this.providers.length == 0 ? this.noProvider = false : this.noProvider = true
-    }
-  }
+  // searchLogic(data) {
+  //   if (this.firstOnly == false) {
+  //     this.firstOnly = true
+  //     this.getListProvider()
+  //   } else {
+  //     this.searching = true
+  //     this.providers = data
+  //     console.log(this.providers)
+  //     this.providers.length == 0 ? this.noProvider = false : this.noProvider = true
+  //   }
+  // }
 
-  goSearch() {//for yg filter type
-    this.serviceApi.goSearch(this.seachInput, this.searchType)
-  }
+  // goSearch() {//for yg filter type
+  //   this.serviceApi.goSearch(this.seachInput, this.searchType)
+  // }
 
   getListProvider() {
     this.providerId = this.navParams.get("treatmentId")
@@ -162,7 +163,7 @@ export class ListprovidersPage {
           handler: data => {
             this.searchType = data
             console.log(data)
-            this.goSearch()
+            // this.goSearch()
           }
         }
       ]
