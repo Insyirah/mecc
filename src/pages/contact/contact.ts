@@ -42,6 +42,7 @@ export class ContactPage implements OnInit {
 
   ngOnInit():void{
     this.user=this.storage.retrieve("user")
+    this.getSkinType()
     this.getUserProfile()
   }
 
@@ -81,13 +82,21 @@ export class ContactPage implements OnInit {
 
   }
 
- async setSkinType(){
-     this.form={
-       moduleName : "UserAccount",
-       masterName : "List Of Skin Type"
-     }
-  this.testing = this.serviceApi.getSkinType(this.form)
-  console.log(this.testing)
+  getSkinType(){
+    this.form={
+      moduleName : "UserAccount",
+      masterName : "List Of Skin Type"
+    }
+    // this.testing = this.serviceApi.getSkinType(this.form)
+    this.serviceApi.getSkinType(this.form).subscribe(data => {
+      this.storage.store("skinType",data)
+    })
+    
+  }
+
+  setSkinType(){
+    this.skin = this.storage.retrieve("skinType")
+    console.log("skin",this.skin)
   }
 
   logout(){

@@ -7,10 +7,13 @@ import {ServiceApiProvider} from '../../providers/service-api/service-api';
 @IonicPage()
 @Component({selector: 'page-treatmentproviders', templateUrl: 'treatmentproviders.html'})
 export class TreatmentprovidersPage {
+  appID: any;
+  brancId: any;
+  disId: any;
+  bookingDetail: any;
+  choosenForm: { treatmentID: any; agentDiscountID: any; agentBranchID: any; };
   submitChoosenTreatment : Array < any > = []
-  choosenForm : {
-    treatmentID: any;
-  };
+  
   list2 : any;
   list1 : any;
   treatmentList : Array < any >;
@@ -64,16 +67,23 @@ export class TreatmentprovidersPage {
     })
   }
 
-  choosenTreatment(treatmentID, status) {
+  choosenTreatment(treatmentID,status,agentDiscountId,agentBranchId) {
+    this.disId = agentDiscountId
+    this.brancId = agentBranchId
+    console.log(agentBranchId)
     if (status == true) {
       this.choosenForm = {
-        treatmentID: treatmentID
+        treatmentID: treatmentID,
+        agentDiscountID:agentDiscountId,
+        agentBranchID:agentBranchId
       }
       this.submitChoosenTreatment.push(this.choosenForm)
       console.log(this.submitChoosenTreatment)  
       } else {
       this.choosenForm = {
-        treatmentID: treatmentID
+        treatmentID: treatmentID,
+        agentDiscountID:agentDiscountId,
+        agentBranchID:agentBranchId
       }
       this.submitChoosenTreatment = this.submitChoosenTreatment.filter(p => {
           return p.treatmentID != this.choosenForm.treatmentID
@@ -97,7 +107,23 @@ export class TreatmentprovidersPage {
   }
 
   bookAppointment() {
-    this.navCtrl.push(SetDayAppointmentPage)
+    this.form = {
+      TreatmentSelectedViewModel:this.submitChoosenTreatment
+    }
+    console.log("choosen",this.form)
+    console.log("Choosentreatment",this.submitChoosenTreatment)
+    this.serviceApi.postBookingMain(this.form).subscribe(data => {
+      this.bookingDetail = data
+      this.appID = this.bookingDetail.applicationMainDetail[0].applicationID
+      console.log("bookingDetail",this.bookingDetail)      
+      console.log("bookingDetail",this.appID)
+
+    })
+    this.navCtrl.push(SetDayAppointmentPage,{
+      appId :this.appID,
+      discId:this.disId,
+      brId:this.brancId
+    })
   }
 
 }

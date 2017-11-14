@@ -9,6 +9,9 @@ import moment from "moment"
   templateUrl: 'set-day-appointment.html',
 })
 export class SetDayAppointmentPage {
+  bId: any;
+  dId: any;
+  aId: any;
   selectedDate: any;
   harini: Date = new Date()
   previousMonths: boolean = false
@@ -103,6 +106,9 @@ export class SetDayAppointmentPage {
   }
 
   pickedDate(x) {
+  
+
+    this.selectedDate = x
     console.log(x, " huhu");
   }
 
@@ -129,8 +135,13 @@ export class SetDayAppointmentPage {
   // }
 
   setTime(x) {
-    this.navCtrl.push(SetTimeAppointmentPage, {
-      date: this.selectedDate
+    this.aId = this.navParams.get('appId')
+    this.dId= this.navParams.get('discId')
+    this.bId = this.navParams.get('brId')
+    
+    console.log("appId",this.aId)
+    this.navCtrl.push(SetTimeAppointmentPage,{
+      date : this.selectedDate
     })
   }
 
