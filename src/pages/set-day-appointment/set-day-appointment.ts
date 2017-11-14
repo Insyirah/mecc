@@ -72,7 +72,6 @@ export class SetDayAppointmentPage {
     if (p.getMonth() == x.getMonth()) {
       this.previousMonths = true
     }
-
   }
 
   DisableDate() {

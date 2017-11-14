@@ -10,11 +10,12 @@ import { Events } from 'ionic-angular';
 
 @Injectable()
 export class ServiceApiProvider {
+  applicationId: string;
     loginId: any;
     user: any;
     url2: string;
     url1: string;
-    userId: string;
+    userId: any;
     url: string
 
     host: string = "http://35.203.181.89:300/"
@@ -24,9 +25,11 @@ export class ServiceApiProvider {
         
         if (this.user == null) {
             this.loginId = 0
+            this.userId = 0
           }
           else {
             this.loginId = this.user.listDetail.loginID
+            this.userId = this.user.listDetail.userID
             console.log("loginID", this.loginId)
           }     
 
@@ -34,6 +37,7 @@ export class ServiceApiProvider {
             this.user = this.storage.retrieve("user")
             console.log("service")
             this.loginId = this.user.listDetail.loginID
+            this.userId = this.user.listDetail.userID
           })
       
     }
@@ -157,7 +161,7 @@ export class ServiceApiProvider {
     }
 
     postBookingMain(form): Observable<any> {//treatmentproviderpage(Done)
-      let url = this.host + 'UserBooking/api/PostBookingMain/'+ 5
+      let url = this.host + 'UserBooking/api/PostBookingMain/'+ this.userId
       console.log(url)
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
@@ -171,9 +175,34 @@ export class ServiceApiProvider {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(url, form, options)
-      .map((res: Response) => res.json());
+      .map((res: Response) => res.json());  
 }
 
+  postBookingSlot(form): Observable<any> {
+    let url = this.host + 'UserBooking/api/PostBookingSlot'
+    console.log(url)
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(url, form, options)
+    .map((res: Response) => res.json());
+}
+
+postSummaryBooking(form): Observable<any> {
+  let url = this.host + 'UserBooking/api/PostSummaryBooking/'+ form.applicationID
+  console.log(url)
+  let headers = new Headers({ 'Content-Type': 'application/json' });
+  let options = new RequestOptions({ headers: headers });
+  return this.http.post(url, form, options)
+  .map((res: Response) => res.json());
+}
+
+getSummaryBooking(form): Observable<any> {
+  let url = this.host + 'UserBooking/api/GetSummaryBooking/' + form.applicationID
+  console.log(url)
+  return this.http.get(url)
+    .map((res: Response) => res.json()
+    );
+}
 
 
   

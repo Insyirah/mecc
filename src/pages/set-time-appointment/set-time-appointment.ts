@@ -18,6 +18,8 @@ import { LocalStorageService } from 'ng2-webstorage';
   templateUrl: 'set-time-appointment.html',
 })
 export class SetTimeAppointmentPage {
+  fomss: { applicationID: any; };
+  forms: { applicationID: any; agentSlotID: any; applicationBookingDate: any; };
   slots: any = {}
   choose: any;
   slot: any;
@@ -72,6 +74,31 @@ export class SetTimeAppointmentPage {
     console.log(choosenTime)
     this.slot = choosenTime
     // this.choose = this.storage.retrieve("timeSlot")
+  }
+
+  async setBooking (){
+    this.forms = {
+      applicationID: this.applicationId,
+      agentSlotID:this.slot,
+      applicationBookingDate:this.dates
+    }
+    console.log(this.form)
+  await this.serviceApi.postBookingSlot(this.forms).subscribe(data => {
+     console.log(data)
+    })
+    this.fomss = {
+      applicationID: this.applicationId,
+    }
+  await this.serviceApi.postSummaryBooking(this.fomss).subscribe(data => {
+      console.log(data)
+     })
+
+
+  await this.serviceApi.getSummaryBooking(this.fomss).subscribe(data => {
+      console.log(data)
+     })
+     this.navCtrl.push(ConfirmBookingPage,{
+     })
   }
 
 }
