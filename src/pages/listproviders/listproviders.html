@@ -19,7 +19,7 @@
     <ion-slide>
       <ion-row>
         <ion-col col-10 class="search">
-          <ion-searchbar [disabled] ="false"  [(ngModel)]="seachInput" [formControl]="terms" (ionCancel)="searchCancel($event)" [showCancelButton]="true"
+          <ion-searchbar  [(ngModel)]="seachInput" [formControl]="terms" (ionCancel)="searchCancel($event)" [showCancelButton]="true"
             color="primary" placeholder="Search">
           </ion-searchbar>
           <!-- //  <ion-list  *ngFor="let item of items ">{{item}}</ion-list> -->
@@ -40,7 +40,7 @@
         <ion-spinner name="crescent"></ion-spinner>
       </div>
 
-      <div *ngIf="searching">
+      <div>
         <ion-item no-padding *ngFor="let provider of providers" (click)="goTreatment(provider.agentBranchID,provider.treatmentProvidedID)">
           <ion-thumbnail item-left>
             <ion-img class="defaultStore"></ion-img>
