@@ -166,12 +166,15 @@ export class ServiceApiProvider {
   }
 
   getBookingSlot(form): Observable<any> {//treatmentproviderpage(Done)
-    let url = this.host + 'UserApplication/api/GetBookingSlotList/'
+    let url = this.host + 'UserBooking/api/GetBookingSlotList'
     console.log(url)
-    return this.http.get(url)
-      .map((res: Response) => res.json()
-      );
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(url, form, options)
+      .map((res: Response) => res.json());
 }
+
+
 
   
   

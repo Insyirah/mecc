@@ -9,9 +9,10 @@ import moment from "moment"
   templateUrl: 'set-day-appointment.html',
 })
 export class SetDayAppointmentPage {
-  bId: any;
-  dId: any;
-  aId: any;
+  branchId: any;
+  discountId: any;
+  applicationId: any;
+
   selectedDate: any;
   harini: Date = new Date()
   previousMonths: boolean = false
@@ -38,6 +39,8 @@ export class SetDayAppointmentPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.CalendarOptions.disableWeeks = [0, 6]
     this.DisableDate()
+
+   
     //   this.disableMonth()
     //  console.log(moment())
   }
@@ -102,8 +105,6 @@ export class SetDayAppointmentPage {
   }
 
   pickedDate(x) {
-  
-
     this.selectedDate = x
     console.log(x, " huhu");
   }
@@ -113,13 +114,19 @@ export class SetDayAppointmentPage {
   // }
 
   setTime(x) {
-    this.aId = this.navParams.get('appId')
-    this.dId= this.navParams.get('discId')
-    this.bId = this.navParams.get('brId')
+    this.applicationId = this.navParams.get('applicationID')
+    this.discountId= this.navParams.get('agentDiscountID')
+    this.branchId = this.navParams.get('agentBranchID')
+
+    console.log("AppID",this.applicationId)
+    console.log("DiscID",this.discountId)
+    console.log("BrancID",this.branchId)
     
-    console.log("appId",this.aId)
     this.navCtrl.push(SetTimeAppointmentPage,{
-      date : this.selectedDate
+      date : this.selectedDate,
+      applicationID:this.applicationId,
+      agentDiscountID:this.discountId,
+      agentBranchID:this.branchId
     })
   }
 
