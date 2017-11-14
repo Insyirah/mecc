@@ -62,7 +62,7 @@ export class SetTimeAppointmentPage {
     this.serviceApi.getBookingSlot(this.form).subscribe(data => {
       this.timeSlot = data.availableSlot
       this.storage.store("timeSlot",this.timeSlot)
-      console.log(this.timeSlot)
+      console.log("p",this.timeSlot)
     })
   }
 

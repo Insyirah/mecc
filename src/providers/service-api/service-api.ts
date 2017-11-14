@@ -104,7 +104,7 @@ export class ServiceApiProvider {
           );
     }
 
-    getBodyTreatment(form): Observable<any[]> {//homepage(notDone)
+    getBodyTreatment(form): Observable<any> {//homepage(notDone)
         let url = this.host + 'Global/api/GetMasterData/'+form.moduleName+'/'+form.masterName;
         console.log(url)
         return this.http.get(url)

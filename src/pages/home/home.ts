@@ -9,7 +9,7 @@ import { ServiceApiProvider } from '../../providers/service-api/service-api';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  bodyTreatment: any[];
+  bodyTreatment: Array<any>;
   hairTreatment: Array<any>;
   faceTreatment: any[];
   providerId: any;
@@ -78,14 +78,13 @@ export class HomePage {
       masterName: "List Of Body Treatment"
     }
     this.serviceApi.getBodyTreatment(this.form).subscribe(data => {
-      this.bodyTreatment = data
+      this.bodyTreatment = data.masterData
       console.log("bodyTreatment", this.bodyTreatment)
     })
   }
 
 
   test() {
-
     this.providerId = 9
     this.navCtrl.push(ListprovidersPage, {
       providerID: this.providerId
