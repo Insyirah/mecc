@@ -27,7 +27,7 @@
             <h6 class="hair">Hair</h6>
             <ion-scroll scrollX="true">
                 <div>
-                    <img src="{{treatment.ParameterIcon}}" *ngFor="let treatment of hairTreatment" (click)="goTreatmentProvider(treatment.MasterDataMaintenanceItemID)"
+                    <img src="data:image/jpeg;base64,{{treatment.ParameterIcon}}" *ngFor="let treatment of hairTreatment" (click)="goTreatmentProvider(treatment.MasterDataMaintenanceItemID)"
                     />
                 </div>
             </ion-scroll>
