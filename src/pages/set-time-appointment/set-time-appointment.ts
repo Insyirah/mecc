@@ -18,6 +18,7 @@ import { LocalStorageService } from 'ng2-webstorage';
   templateUrl: 'set-time-appointment.html',
 })
 export class SetTimeAppointmentPage {
+  AgentSlotID: any;
   fomss: { applicationID: any; };
   forms: { applicationID: any; agentSlotID: any; applicationBookingDate: any; };
   slots: any = {}
@@ -26,7 +27,7 @@ export class SetTimeAppointmentPage {
   branchId: any;
   discountId: any;
   applicationId: any;
-  timeSlot: any;
+  timeSlot: Array<any> = []
   form: { applicationID: any; agentDiscountID: any; agentBranchID: any; applicationSlotDate: any; };
   dates: any;
   bookDate: any;
@@ -70,36 +71,57 @@ export class SetTimeAppointmentPage {
   }
 
 
-  chooseSlot(choosenTime) {
-    console.log(choosenTime)
-    this.slot = choosenTime
+  chooseSlot(startHour) {
+    console.log(startHour)
+    console.log(this.slot)
+
+    let p = this.timeSlot.filter(x => { return x.startHour == startHour })
+    let o = p[0]
+    console.log(o)
+
+    this.AgentSlotID = o.agentSlotID
+    this.slot = o.startHour
     console.log(this.slot)
     // this.choose = this.storage.retrieve("timeSlot")
   }
 
-  async setBooking (){
+  setBooking() {
     this.forms = {
       applicationID: this.applicationId,
-      agentSlotID:this.slot,
-      applicationBookingDate:this.dates
+      agentSlotID: this.AgentSlotID,
+      applicationBookingDate: this.dates
     }
     console.log(this.form)
-  await this.serviceApi.postBookingSlot(this.forms).subscribe(data => {
-     console.log(data)
+    this.serviceApi.postBookingSlot(this.forms).subscribe(data => {
+      console.log(data)
+      console.log(1)
+
+      this.postSummaryBooking()
     })
+  }
+
+  postSummaryBooking() {
+
     this.fomss = {
       applicationID: this.applicationId,
     }
-  await this.serviceApi.postSummaryBooking(this.fomss).subscribe(data => {
+    this.serviceApi.postSummaryBooking(this.fomss).subscribe(data => {
       console.log(data)
-     })
+      console.log(2)
 
+      this.getSummaryBooking()
+    })
+  }
 
-  await this.serviceApi.getSummaryBooking(this.fomss).subscribe(data => {
+  async getSummaryBooking() {
+    await this.serviceApi.getSummaryBooking(this.fomss).subscribe(data => {
       console.log(data)
-     })
-     this.navCtrl.push(ConfirmBookingPage,{
-     })
+      console.log(3)
+
+    })
+    this.navCtrl.push(ConfirmBookingPage, {
+    })
+
   }
 
 }
