@@ -69,7 +69,6 @@ export class HomePage {
     this.navCtrl.push(ListprovidersPage, {
       treatmentId: MasterDataMaintenanceItemID
     })
-
   }
 
   getBodyTreatment() {
