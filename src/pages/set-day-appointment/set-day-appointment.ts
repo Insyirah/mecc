@@ -45,7 +45,6 @@ export class SetDayAppointmentPage {
     //  console.log(moment())
   }
 
-
   nextMonth() {
     let v = new Date(this.calendarDefault.todayDate)
     this.calendarDefault.todayDate = new Date(v.setMonth(v.getMonth() + 1))// utk pergi ke next month
@@ -64,7 +63,7 @@ export class SetDayAppointmentPage {
 
   previousMonth() {
     let p = new Date(this.calendarDefault.todayDate)
-    this.calendarDefault.todayDate = new Date(p.setMonth(p.getMonth() - 1))// utk pergi ke next month
+    this.calendarDefault.todayDate = new Date(p.setMonth(p.getMonth() - 1))// utk pergi ke previous month
 
     this.nextmonths = false
     // let LastDateCanBook = new Date(this.todayDate.setDate(this.todayDate.getDay() + 60))
@@ -76,9 +75,6 @@ export class SetDayAppointmentPage {
 
   }
 
-  pickedMonth() {
-    alert()
-  }
   DisableDate() {
 
     let LastDateCanBook = new Date(this.todayDate.setDate(this.todayDate.getDate() + 60))//last day can book
@@ -112,24 +108,6 @@ export class SetDayAppointmentPage {
     this.selectedDate = x
     console.log(x, " huhu");
   }
-
-  // disableMonth() {
-  //   // this.daysDisable = [];
-  //   let today = new Date();
-  //   console.log("full year", today.getFullYear())
-  //   console.log("month", today.getMonth())
-  //   //check if current month is being shown
-  //   if (today.getMonth() == this.calendar.getMonth()) {
-  //     //if current month is shown, disable only past days
-  //     this.daysDisable.push()
-  //   }
-  //   else if (this.calendar.getMonth() + 2 > today.getMonth()) {
-  //     for (let i = 1; i < 31; i++) {
-  //       this.daysDisable.push()
-  //     }
-  //   }
-
-  // }
 
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad SetDayAppointmentPage');
