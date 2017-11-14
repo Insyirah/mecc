@@ -47,26 +47,30 @@ export class SetDayAppointmentPage {
 
 
   nextMonth() {
-    this.calendarDefault.todayDate = new Date(this.calendarDefault.todayDate.setMonth(this.calendarDefault.todayDate.getMonth() + 1))// utk pergi ke next month
+    let v = new Date(this.calendarDefault.todayDate)
+    this.calendarDefault.todayDate = new Date(v.setMonth(v.getMonth() + 1))// utk pergi ke next month
 
     this.previousMonths = false
     let x = new Date()
-    let LastDateCanBook = new Date(x.setDate(x.getDay() + 60))
+    console.log("arini" + x)
 
-    if (this.calendarDefault.todayDate.getMonth() == LastDateCanBook.getMonth()) {
+    let LastDateCanBook = new Date(x.setDate(x.getDate() + 60))
+    console.log(LastDateCanBook)
+    if (v.getMonth() == LastDateCanBook.getMonth()) {
       this.nextmonths = true
     }
 
   }
 
   previousMonth() {
-    this.calendarDefault.todayDate = new Date(this.calendarDefault.todayDate.setMonth(this.calendarDefault.todayDate.getMonth() - 1))// utk pergi ke next month
+    let p = new Date(this.calendarDefault.todayDate)
+    this.calendarDefault.todayDate = new Date(p.setMonth(p.getMonth() - 1))// utk pergi ke next month
 
     this.nextmonths = false
-   // let LastDateCanBook = new Date(this.todayDate.setDate(this.todayDate.getDay() + 60))
-   let x = new Date()
-   
-    if (this.calendarDefault.todayDate.getMonth() == x.getMonth()) {
+    // let LastDateCanBook = new Date(this.todayDate.setDate(this.todayDate.getDay() + 60))
+    let x = new Date()
+
+    if (p.getMonth() == x.getMonth()) {
       this.previousMonths = true
     }
 
@@ -74,29 +78,18 @@ export class SetDayAppointmentPage {
 
   pickedMonth() {
     alert()
-
   }
   DisableDate() {
-    //HTTP GET(DATE[ARRAY])
-    //date arini + 60 
-    //10/1
-    //
-    //
-    alert()
-    let LastDateCanBook = new Date(this.todayDate.setDate(this.todayDate.getDay() + 60))
-    console.log("LastDateCanBook" + LastDateCanBook)
-    let o = this.todayDate.getMonth()
-    let po = this.todayDate.getFullYear()
-    let p = new Date(po, o + 1, 1)
-    console.log(LastDateCanBook.getDate())
-    let maxDayOfMonth = new Date(p.setDate(p.getDate() - 1))
-    console.log("maxDayOfMonth" + maxDayOfMonth)
-    let pol = new Date()
-    for (let i = LastDateCanBook.getDate(); i <= maxDayOfMonth.getDate(); i++) {
-      //console.log("hari bulan" + i)
 
-      // console.log(pol.getMonth())
-      //  console.log(new Date(pol.getFullYear(), pol.getMonth(), i))
+    let LastDateCanBook = new Date(this.todayDate.setDate(this.todayDate.getDate() + 60))//last day can book
+
+    let month = this.todayDate.getMonth()
+    let po = this.todayDate.getFullYear()
+    let p = new Date(this.todayDate.getFullYear(), this.todayDate.getMonth() + 1, 1)
+
+    let maxDayOfMonth = new Date(p.setDate(p.getDate() - 1))
+
+    for (let i = LastDateCanBook.getDate(); i <= maxDayOfMonth.getDate(); i++) {
       let pok = { date: new Date(LastDateCanBook.getFullYear(), LastDateCanBook.getMonth(), i).toDateString() }
       this.data.push(pok)
     }
@@ -108,7 +101,7 @@ export class SetDayAppointmentPage {
     for (let i = 0; i < this.data.length; i++) {
       this.daysDisable.push({
         date: new Date(this.data[i].date),
-        subTitle: "FULL",
+        subTitle: "",
         disable: true,
         marked: true
       })
