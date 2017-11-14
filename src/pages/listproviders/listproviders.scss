@@ -25,15 +25,16 @@ ion-buttons.filter{
     margin-left: 10%;
 }
 
-ion-icon.option{
+ion-button.option{
     margin-left: -10%;
+    align-items: left;
 }
 
 .searchbar-md .searchbar-input {
     line-height: 1rem;
 }
 .searchbar-md .searchbar-search-icon {
-    top:3px;
+    top:6px;
 }
 h2.name{
     margin: 10px 0px;

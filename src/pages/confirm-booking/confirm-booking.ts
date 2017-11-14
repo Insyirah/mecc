@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ServiceApiProvider } from '../../providers/service-api/service-api';
 
 /**
  * Generated class for the ConfirmBookingPage page.
@@ -14,8 +15,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'confirm-booking.html',
 })
 export class ConfirmBookingPage {
+  form: { applicationID: any; };
+  applicationId: any;
 bookings : any[]
-constructor(public navCtrl : NavController, public navParams : NavParams) {
+constructor(private serviceApi: ServiceApiProvider,public navCtrl : NavController, public navParams : NavParams) {
 
     
     this.bookings = [
@@ -31,6 +34,13 @@ constructor(public navCtrl : NavController, public navParams : NavParams) {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfirmBookingPage');
+
+  }
+
+ getBookingSummary(){
+
+
+  
   }
 
 }

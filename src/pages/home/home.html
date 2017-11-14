@@ -39,7 +39,7 @@
             <h6 class="body">Body</h6>
             <ion-scroll scrollX="true" scroll-avatar>
                 <div>
-                    <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="goTreatmentProvider()" class="scroll-item" />
+                    <img src="{{treatment.ParameterIcon}}" *ngFor="let treatment of bodyTreatment" (click)="goTreatmentProvider(treatment.MasterDataMaintenanceItemID)" class="scroll-item" />
                 </div>
             </ion-scroll>
         </ion-item>
