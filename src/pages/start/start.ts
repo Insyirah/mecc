@@ -110,12 +110,12 @@ export class StartPage {
 
 
   goSignIn() {
-     this.navCtrl.setRoot(SetDayAppointmentPage);
-  //    let myModal = this.modalCtrl.create(SignInPage, {
-  //      planCase: "userName"
-  //    });
-  //    myModal.present();
-  //    this.navCtrl.setRoot(SignInPage)
+    // this.navCtrl.setRoot(SetDayAppointmentPage);
+      let myModal = this.modalCtrl.create(SignInPage, {
+        planCase: "userName"
+      });
+      myModal.present();
+      this.navCtrl.setRoot(SignInPage)
   //  }
   }
 

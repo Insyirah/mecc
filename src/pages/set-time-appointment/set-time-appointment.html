@@ -35,7 +35,7 @@
     <ion-item>
       <ion-label floating>Select Time</ion-label>
       <ion-select interface="popover" [(ngModel)]="slot" (ionChange)="chooseSlot($event)"  >
-        <ion-option *ngFor="let slot of choose" [value]=slot.agentSlotID>{{slot.startHour}}</ion-option>
+        <ion-option *ngFor="let slots of timeSlot" value="{{slots.startHour}}">{{slots.startHour}}</ion-option>
       </ion-select>
     </ion-item>
     <button (click)="setTime()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Proceed</button>
