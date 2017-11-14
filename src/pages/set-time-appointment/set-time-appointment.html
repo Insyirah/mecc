@@ -14,7 +14,7 @@
     </span>
     <br><br>
     <hr>
-    <ion-item *ngFor="let time of times">
+    <!-- <ion-item *ngFor="let time of times">
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -25,9 +25,18 @@
             </ion-col>
         </ion-row>
         </ion-grid>
-               
-
-      <!-- <a style="padding-left:55%">{{time.period}}</a> -->
+    </ion-item> -->
+    <!-- <ion-item>
+      <ion-label >Select Time</ion-label>
+      <ion-select (click)="chooseSlot()"  interface="popover" type="text">
+        <ion-option [value]="slot.agentSlotID" *ngFor="let slot of choose">{{slot.startHour}}&nbsp;&nbsp;&nbsp;&nbsp;<a>{{slot.durationMinute}}min</a></ion-option>
+      </ion-select>
+    </ion-item> -->
+    <ion-item>
+      <ion-label floating>Select Time</ion-label>
+      <ion-select interface="popover" [(ngModel)]="slot" (ionChange)="chooseSlot($event)"  >
+        <ion-option *ngFor="let slot of choose" [value]=slot.agentSlotID>{{slot.startHour}}</ion-option>
+      </ion-select>
     </ion-item>
     <button (click)="setTime()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Proceed</button>
     

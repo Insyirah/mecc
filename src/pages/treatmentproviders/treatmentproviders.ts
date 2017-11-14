@@ -7,6 +7,9 @@ import {ServiceApiProvider} from '../../providers/service-api/service-api';
 @IonicPage()
 @Component({selector: 'page-treatmentproviders', templateUrl: 'treatmentproviders.html'})
 export class TreatmentprovidersPage {
+  branchId: any;
+  discountId: any;
+  applicationId: any;
   appID: any;
   brancId: any;
   disId: any;
@@ -68,8 +71,8 @@ export class TreatmentprovidersPage {
   }
 
   choosenTreatment(treatmentID,status,agentDiscountId,agentBranchId) {
-    this.disId = agentDiscountId
-    this.brancId = agentBranchId
+    this.discountId = agentDiscountId
+    this.branchId = agentBranchId
     console.log(agentBranchId)
     if (status == true) {
       this.choosenForm = {
@@ -114,16 +117,16 @@ export class TreatmentprovidersPage {
     console.log("Choosentreatment",this.submitChoosenTreatment)
     this.serviceApi.postBookingMain(this.form).subscribe(data => {
       this.bookingDetail = data
-      this.appID = this.bookingDetail.applicationMainDetail[0].applicationID
+      this.applicationId = this.bookingDetail.applicationMainDetail[0].applicationID
       console.log("bookingDetail",this.bookingDetail)      
-      console.log("bookingDetail",this.appID)
-
+      console.log("AppID TreatPro",this.appID)
+      this.navCtrl.push(SetDayAppointmentPage,{
+        applicationID :this.applicationId,
+        agentDiscountID:this.discountId,
+        agentBranchID:this.branchId
+      })
     })
-    this.navCtrl.push(SetDayAppointmentPage,{
-      appId :this.appID,
-      discId:this.disId,
-      brId:this.brancId
-    })
+ 
   }
 
 }
