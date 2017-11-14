@@ -73,6 +73,7 @@ export class SetTimeAppointmentPage {
   chooseSlot(choosenTime) {
     console.log(choosenTime)
     this.slot = choosenTime
+    console.log(this.slot)
     // this.choose = this.storage.retrieve("timeSlot")
   }
 
