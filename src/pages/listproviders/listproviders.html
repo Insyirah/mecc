@@ -15,8 +15,6 @@
     </ion-segment-button>
   </ion-segment>
 
-
-
   <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
     <ion-slide>
       <ion-row>
@@ -28,10 +26,10 @@
 
         </ion-col>
         <ion-col col-2 class="butang">
-          <ion-buttons end (click)="filterType()">
-            <button ion-button icon-only>
-                  <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
-                </button>
+          <ion-buttons end class="filter" (click)="filterType()">
+            <button ion-button outline color="light" icon-only>
+              <ion-icon class="option" ios="ios-options" md="md-options"></ion-icon>
+            </button>
           </ion-buttons>
         </ion-col>
       </ion-row>
@@ -47,8 +45,8 @@
           <ion-thumbnail item-left>
             <ion-img class="defaultStore"></ion-img>
           </ion-thumbnail>
-          <h2>{{provider.storeName}}</h2>
-          <p>
+          <h2 class="name">{{provider.storeName}}</h2>
+          <p class="name2">
             <ion-icon ios="ios-pin-outline" md="md-pin" color="primary"></ion-icon>&nbsp;{{provider.address}}</p>
           <br>
           <!-- <ion-icon name="star" color="gold" *ngFor="let item of [1,2,3,4,5];"></ion-icon>
