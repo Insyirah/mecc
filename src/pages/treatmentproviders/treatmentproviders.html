@@ -96,16 +96,11 @@
       <br>
       <hr>
       <!-- <span style="font-size:80%"><b>Hair</b></span> -->
-      <!-- 
-              <ion-item (click)= "picked(treatment.name,position.o)"*ngFor="let treatment of treatments; let position of o" >
-                {{treatment.name}} <a class="hours">{{treatment.hours}}</a><a class="hours">{{treatment.price}}</a>
-              </ion-item> -->
-
               <ion-item *ngFor="let treatment of treatmentList;let i = index" style="white-space: normal;" text-wrap>
                 <ion-label>
                 <b> {{treatment.treatmentName}} </b><br>
-                <a>Rp&nbsp;{{treatment.price}} k</a>
-                <a class="hours">{{treatment.treatmentDuration}} min</a>
+                <a><b>Rp&nbsp;{{treatment.price}} k</b></a>
+                <a class="hours"><b>{{treatment.treatmentDuration}} min</b></a>
                 </ion-label>
                 <ion-checkbox [(ngModel)]="checkedItems[i]" (ionChange)="choosenTreatment(treatment.treatmentID,checkedItems[i],treatment.agentDiscountID,treatment.agentBranchID)" color="primary"></ion-checkbox>
                 </ion-item>

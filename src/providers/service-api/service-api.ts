@@ -221,6 +221,15 @@ getUserBookingActivity(): Observable<any> {
     );
 }
 
+postCancelBooking(form): Observable<any> {
+  let url = this.host + 'UserBooking/api/PostCancelBooking/'+ form.applicationID
+  console.log(url)
+  let headers = new Headers({ 'Content-Type': 'application/json' });
+  let options = new RequestOptions({ headers: headers });
+  return this.http.post(url, form, options)
+  .map((res: Response) => res.json());
+}
+
 
 
 

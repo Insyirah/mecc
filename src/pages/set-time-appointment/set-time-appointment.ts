@@ -96,20 +96,17 @@ export class SetTimeAppointmentPage {
     this.serviceApi.postBookingSlot(this.forms).subscribe(data => {
       console.log(data)
       console.log(1)
-
       this.postSummaryBooking()
     })
   }
 
   postSummaryBooking() {
-
     this.fomss = {
       applicationID: this.applicationId,
     }
     this.serviceApi.postSummaryBooking(this.fomss).subscribe(data => {
       console.log(data)
       console.log(2)
-
       this.getSummaryBooking()
     })
   }

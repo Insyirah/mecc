@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
+import { AboutPage } from '../about/about';
 
 /**
  * Generated class for the ConfirmBookingPage page.
@@ -58,6 +59,9 @@ constructor( private alertCtrl: AlertController,private serviceApi: ServiceApiPr
       console.log(data)
       if(data.status == "success"){
         this.presentAlert('You have successfully booking.');
+        this.navCtrl.setRoot(AboutPage,{
+          applicationID:this.applicationId
+        })
       }else{
         this.presentAlert('Service error');
       }

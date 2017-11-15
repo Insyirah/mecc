@@ -33,18 +33,12 @@
            <h4>Date:{{date| date: 'dd/MM/yyyy'}}</h4>
         </ion-item>
 
-         <ion-item no-padding  *ngFor="let status of bookingRecentStatus">
+         <ion-item no-padding  *ngFor="let status of bookingRecentStatus" (click)="viewBooking(status)">
             <ion-thumbnail item-left>
               <ion-img src="assets/1.jpg" class="defaultStore"></ion-img>
             </ion-thumbnail>
             <h2>{{status.storeName}}</h2>
-            <p>{{status.appointmentDate| date: 'dd/MM/yyyy'}}&nbsp;<ion-icon large color="primary" ios="ios-close-circle" md="md-close-circle"></ion-icon></p> 
-            <!-- <p>{{providerz.date}}</p> -->
-            <br>
-            <!-- <ion-icon name="star" color="gold" *ngFor="let item of [1,2,3,4,5];"></ion-icon>
-            <br> -->
-            <!-- <button ion-button full color="warning" class="pull-right" (click)="requestService(agent,$event)">Book Now</button>
-            <p text-center class="distance-tag">{{agent.distance | number : '1.2-2'}} km</p> -->
+            <p>{{status.appointmentDate| date: 'dd/MM/yyyy'}}&nbsp;&nbsp;<ion-icon (click)="cancelBooking()" color="danger" ios="ios-close-circle" md="md-close-circle"></ion-icon></p> 
           </ion-item>
       </ion-slide>
       <ion-slide>

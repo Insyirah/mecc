@@ -18,6 +18,7 @@ import { SetDayAppointmentPageModule } from "../pages/set-day-appointment/set-da
 import { LoginService } from '../pages/service/login.service';
 import { LogInMeccapanPage } from '../pages/log-in-meccapan/log-in-meccapan';
 import { SignInPageModule } from '../pages/sign-in/sign-in.module';
+import { BookingDetailsPageModule } from '../pages/booking-details/booking-details.module';
 
 import { Facebook } from '@ionic-native/facebook';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -30,6 +31,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { NguiMapModule } from '@ngui/map';
 import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { HttpModule } from '@angular/http';
     RegisterPageModule,
     StartPageModule,
     SignInPageModule,
+    BookingDetailsPageModule,  
     Ng2Webstorage,
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBSy0GEQeCrUgJ9LvrYHUBemGUjHE1PhcU' }),
     IonicModule.forRoot(MyApp, {

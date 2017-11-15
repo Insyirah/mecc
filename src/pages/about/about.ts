@@ -1,12 +1,15 @@
 import {Component, ViewChild} from '@angular/core';
-import { NavController, Slides, IonicPage } from 'ionic-angular';
+import { NavController, Slides, IonicPage, NavParams } from 'ionic-angular';
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
+import { BookingDetailsPage } from '../booking-details/booking-details';
 
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
 })
 export class AboutPage {
+  form: {};
+  applicationId: any;
   date: any;
   store: any;
   bookingRecentStatus:Array<any>;
@@ -19,7 +22,7 @@ export class AboutPage {
   completed:any;
   rejected:any;
 
-  constructor(private serviceApi: ServiceApiProvider,public navCtrl: NavController) {
+  constructor(private serviceApi: ServiceApiProvider,public navCtrl: NavController,public navParams : NavParams) {
     
     this.selectedSegment = 'first';
     this.slides = [
@@ -67,7 +70,14 @@ export class AboutPage {
       {name:'Johny Saloons',treatment:"Eyelashes, Haircut",date:"Wednesday, March 20, 2PM"},
       {name:'Johny Saloons',treatment:"Lash Extension",date:"Wednesday, March 20, 2PM"},
     ]
+  }
 
+  
+
+  viewBooking(status){
+    this.navCtrl.push(BookingDetailsPage,{
+      recentStatusDetail:status
+    })
   }
 
   onSegmentChanged(segmentButton) {
