@@ -15,6 +15,10 @@
       <ion-segment-button value="second">
         COMPLETED
       </ion-segment-button>
+
+      <ion-segment-button value="third">
+        REJECTED
+      </ion-segment-button>
     </ion-segment>
   <br> 
     <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
@@ -38,8 +42,6 @@
           </ion-item>
       </ion-slide>
   
-  
-  
       <ion-slide>
           <ion-item no-padding  *ngFor="let complete of completed">
               <ion-thumbnail item-left>
@@ -50,6 +52,17 @@
               <p>{{complete.date}}</p>
               </ion-item>
       </ion-slide>
+
+      <ion-slide>
+        <ion-item no-padding  *ngFor="let reject of rejected">
+            <ion-thumbnail item-left>
+                <ion-img src="assets/img/11.jpg" class="defaultStore"></ion-img>
+            </ion-thumbnail>
+            <h2>{{reject.name}}</h2>
+            <p>{{reject.treatment}}<ion-icon style="padding-left:30%;color:darkgreen;zoom:2.0;"ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon></p>
+            <p>{{reject.date}}</p>
+            </ion-item>
+    </ion-slide>
     </ion-slides>
   </ion-content>
   
