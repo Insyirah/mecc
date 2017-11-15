@@ -14,23 +14,23 @@
 <ion-content padding>
   
   <ion-item *ngFor="let book of bookings">
-      <b>{{book.provider}}</b><br><br>
+      <b>{{book.storeName}}</b><br><br>
     
       <span>
-          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;{{book.date}}
+          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;{{book.appointmentDate| date: 'dd/MM/yyyy'}}
       </span><br><br>
       The treatment you have choosen are :<br><hr>
       <br>
       <ion-grid>
         <ion-row>
           <ion-col>
-              {{book.treatment}}
+              {{book.treatmentMainName}}
             </ion-col>
             <ion-col>
-                <a class="b"><ion-icon ios="ios-time" md="md-time"></ion-icon>&nbsp;&nbsp;{{book.period}}</a>
+                <a class="b"><ion-icon ios="ios-time" md="md-time"></ion-icon>&nbsp;&nbsp;{{book.treatmentDuration}}min</a>
               </ion-col>
               <ion-col>
-                  {{book.price}}
+                  Rp.{{book.treatmentPrice}}k
                 </ion-col>
           </ion-row>
           <ion-row>
@@ -42,13 +42,13 @@
             
                   </ion-col>
                   <ion-col>
-                      Rp. 100k
+                      Rp.{{book.treatmentPrice}}k
                       </ion-col>
           </ion-row>
       </ion-grid>
 
      
-      <button (click)="goSignIn()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Book Appointment</button>
+      <button (click)="goBooking()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Book Appointment</button>
       <span style="font-size:xx-small;text-align:justify;white-space:normal;">
           *note
           <ol>

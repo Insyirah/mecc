@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
 
 /**
@@ -17,30 +17,46 @@ import { ServiceApiProvider } from '../../providers/service-api/service-api';
 export class ConfirmBookingPage {
   form: { applicationID: any; };
   applicationId: any;
-bookings : any[]
-constructor(private serviceApi: ServiceApiProvider,public navCtrl : NavController, public navParams : NavParams) {
+bookings : any;
+constructor( private alertCtrl: AlertController,private serviceApi: ServiceApiProvider,public navCtrl : NavController, public navParams : NavParams) {
 
     
-    this.bookings = [
-      {
-        provider: 'Johnny Saloon',
-        date: "Wednesday,20 March",
-        period:"30min",
-        treatment: "Hair Stylist",
-        price:"Rp. 100k"
-      },
-    ];
+    // this.bookings = [
+    //   {
+    //     provider: 'Johnny Saloon',
+    //     date: "Wednesday,20 March",
+    //     period:"30min",
+    //     treatment: "Hair Stylist",
+    //     price:"Rp. 100k"
+    //   },
+    // ];
   }
 
-  ionViewDidLoad() {
+ async ionViewDidLoad() {
     console.log('ionViewDidLoad ConfirmBookingPage');
-
+   await this.getBookingSummary()
   }
-
+  private presentAlert(text) {
+    let alert = this.alertCtrl.create({
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
  getBookingSummary(){
-
-
-  
+  this.bookings = this.navParams.get("detailBooking")
+  this.applicationId = this.navParams.get("applicationID")
+  console.log("b",this.bookings)  
   }
 
+  goBooking(){
+    this.form = {
+      applicationID:this.applicationId
+    }
+    console.log(this.form)
+    this.serviceApi.postSubmitBooking(this.form).subscribe(data => {
+      console.log(data)
+    })
+  }
+  // this.presentAlert('The email is already in used. Please try another email.');
 }

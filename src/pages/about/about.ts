@@ -1,19 +1,24 @@
 import {Component, ViewChild} from '@angular/core';
 import { NavController, Slides, IonicPage } from 'ionic-angular';
+import { ServiceApiProvider } from '../../providers/service-api/service-api';
 
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
 })
 export class AboutPage {
-
+  date: any;
+  store: any;
+  bookingRecentStatus:Array<any>;
+  
+  bookingUpcomingStatus:any;
   @ViewChild('mySlider')slider : Slides;
   selectedSegment: string;
   slides: any;
   providerr:any;
   completed:any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(private serviceApi: ServiceApiProvider,public navCtrl: NavController) {
     
     this.selectedSegment = 'first';
     this.slides = [
@@ -38,6 +43,21 @@ export class AboutPage {
       {name:'Johny Saloons',treatment:"Eyelashes, Haircut",date:"Wednesday, March 20, 2PM"},
     ];
 
+    this.getBookingActivity()
+
+  }
+
+  getBookingActivity(){
+    this.serviceApi.getUserBookingActivity().subscribe(data => {
+      this.bookingUpcomingStatus = data.upcomingBooking
+      this.bookingRecentStatus=data.recentBooking
+      console.log(data)
+      console.log("upcoming",this.bookingUpcomingStatus)
+      console.log("recent",this.bookingUpcomingStatus)      
+      console.log("po",this.bookingUpcomingStatus.storeName)
+      this.store=this.bookingUpcomingStatus.storeName
+      this.date=this.bookingUpcomingStatus.appointmentDate
+    })
   }
 
   onSegmentChanged(segmentButton) {

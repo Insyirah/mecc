@@ -11,7 +11,7 @@ import { ServiceApiProvider } from '../../providers/service-api/service-api';
 export class HomePage {
   bodyTreatment: Array<any>;
   hairTreatment: Array<any>;
-  faceTreatment: any[];
+  faceTreatment:  Array<any>;
   providerId: any;
   form: {};
   treatmentProvidedDetailID: number;
@@ -20,14 +20,14 @@ export class HomePage {
 
   constructor(private serviceApi: ServiceApiProvider, public navCtrl: NavController) {
    
-    this.avatars = [
-      { category: '1', img: "assets/dino.jpg" },
-      { category: '1', img: "assets/dino.jpg" },
-      { category: '1', img: "assets/dino.jpg" },
-      { category: '1', img: "assets/dino.jpg" },
-      { category: '1', img: "assets/dino.jpg" },
-      { category: '1', img: "assets/dino.jpg" },
-    ];
+    // this.avatars = [
+    //   { category: '1', img: "assets/dino.jpg" },
+    //   { category: '1', img: "assets/dino.jpg" },
+    //   { category: '1', img: "assets/dino.jpg" },
+    //   { category: '1', img: "assets/dino.jpg" },
+    //   { category: '1', img: "assets/dino.jpg" },
+    //   { category: '1', img: "assets/dino.jpg" },
+    // ];
 
   }
 
@@ -43,7 +43,7 @@ export class HomePage {
       masterName: "List Of Face Treatment"
     }
     this.serviceApi.getFaceTreatment(this.form).subscribe(data => {
-      this.faceTreatment = data
+      this.faceTreatment = data.masterData
       console.log("faceTreatment", this.faceTreatment)
     })
   }

@@ -10,7 +10,7 @@
     <a><b>Hair-eyelashes</b></a><br><br>
     
     <span>
-        <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;&nbsp;{{bookDate}}
+        <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;&nbsp;{{bookDate| date: 'dd/MM/yyyy'}}
     </span>
     <br><br>
     <hr>
@@ -35,7 +35,7 @@
     <ion-item>
       <ion-label floating>Select Time</ion-label>
       <ion-select interface="popover" [(ngModel)]="slot" (ionChange)="chooseSlot($event)"  >
-        <ion-option *ngFor="let slots of timeSlot" value="{{slots.agentSlotID}}">{{slots.startHour}}</ion-option>
+        <ion-option *ngFor="let slots of timeSlot" value="{{slots.startHour}}">{{slots.startHour}}</ion-option>
       </ion-select>
     </ion-item>
     <button (click)="setBooking()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Proceed</button>

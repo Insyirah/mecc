@@ -16,7 +16,7 @@
             <h6 class="face">Face</h6>
             <ion-scroll scrollX="true">
                 <div>
-                    <img src="{{avatar.img}}" *ngFor="let avatar of avatars" (click)="goTreatmentProvider()" />
+                    <img src="data:image/jpeg;base64,{{treatment.ParameterIcon}}" *ngFor="let treatment of faceTreatment" (click)="goTreatmentProvider(treatment.MasterDataMaintenanceItemID)" />
                 </div>
             </ion-scroll>
         </ion-item>
@@ -39,7 +39,7 @@
             <h6 class="body">Body</h6>
             <ion-scroll scrollX="true" scroll-avatar>
                 <div>
-                    <img src="{{treatment.ParameterIcon}}" *ngFor="let treatment of bodyTreatment" (click)="goTreatmentProvider(treatment.MasterDataMaintenanceItemID)" class="scroll-item" />
+                    <img src="data:image/jpeg;base64,{{treatment.ParameterIcon}}" *ngFor="let treatment of bodyTreatment" (click)="goTreatmentProvider(treatment.MasterDataMaintenanceItemID)" class="scroll-item" />
                 </div>
             </ion-scroll>
         </ion-item>

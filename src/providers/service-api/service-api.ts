@@ -93,7 +93,7 @@ export class ServiceApiProvider {
           .map((res: Response) => res.json());
     }
 
-    getFaceTreatment(form): Observable<any[]> {//homepage(notDone)
+    getFaceTreatment(form): Observable<any> {//homepage(notDone)
         let url = this.host + 'Global/api/GetMasterData/'+form.moduleName+'/'+form.masterName;
         console.log(url)
         return this.http.get(url).map((res: Response) => res.json()
@@ -203,6 +203,24 @@ getSummaryBooking(form): Observable<any> {
     .map((res: Response) => res.json()
     );
 }
+
+postSubmitBooking(form): Observable<any> {
+  let url = this.host + 'UserBooking/api/PostSubmitBooking/'+ form.applicationID
+  console.log(url)
+  let headers = new Headers({ 'Content-Type': 'application/json' });
+  let options = new RequestOptions({ headers: headers });
+  return this.http.post(url, form, options)
+  .map((res: Response) => res.json());
+}
+
+getUserBookingActivity(): Observable<any> {
+  let url = this.host + 'Dashboard/User/api/GetUserBookingActivity/' + this.userId
+  console.log(url)
+  return this.http.get(url)
+    .map((res: Response) => res.json()
+    );
+}
+
 
 
 

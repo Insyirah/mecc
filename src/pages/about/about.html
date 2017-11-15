@@ -23,13 +23,19 @@
          <!-- <p>Johny Saloons</p>
          <p>Eye Lashes</p>
          <p>Wednesday, 3.00pm</p> -->
-         <ion-item no-padding  *ngFor="let providerz of providerr">
+         <ion-item class="background">
+           <b><h2>Upcoming Booking</h2></b>
+           <h3>Location:{{store}}</h3>
+           <h4>Date:{{date| date: 'dd/MM/yyyy'}}</h4>
+        </ion-item>
+
+         <ion-item no-padding  *ngFor="let status of bookingRecentStatus">
             <ion-thumbnail item-left>
-              <ion-img src="assets/img/11.jpg" class="defaultStore"></ion-img>
+              <ion-img src="assets/1.jpg" class="defaultStore"></ion-img>
             </ion-thumbnail>
-            <h2>{{providerz.name}}</h2>
-            <p>{{providerz.treatment}}<ion-icon *ngIf="providerz.status==1" style="padding-left:30%;color:darkgreen;zoom:2.0;"ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon></p>
-            <p>{{providerz.date}}</p>
+            <h2>{{status.storeName}}</h2>
+            <!-- <p>{{status.appointmentDate}}<ion-icon *ngIf="providerz.status==1" style="padding-left:30%;color:darkgreen;zoom:2.0;"ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon></p>  -->
+            <!-- <p>{{providerz.date}}</p> -->
             <br>
             <!-- <ion-icon name="star" color="gold" *ngFor="let item of [1,2,3,4,5];"></ion-icon>
             <br> -->
@@ -37,9 +43,6 @@
             <p text-center class="distance-tag">{{agent.distance | number : '1.2-2'}} km</p> -->
           </ion-item>
       </ion-slide>
-  
-  
-  
       <ion-slide>
           <ion-item no-padding  *ngFor="let complete of completed">
               <ion-thumbnail item-left>
