@@ -34,7 +34,7 @@
               <ion-img src="assets/1.jpg" class="defaultStore"></ion-img>
             </ion-thumbnail>
             <h2>{{status.storeName}}</h2>
-            <!-- <p>{{status.appointmentDate}}<ion-icon *ngIf="providerz.status==1" style="padding-left:30%;color:darkgreen;zoom:2.0;"ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon></p>  -->
+            <p>{{status.appointmentDate| date: 'dd/MM/yyyy'}}&nbsp;<ion-icon large color="primary" ios="ios-close-circle" md="md-close-circle"></ion-icon></p> 
             <!-- <p>{{providerz.date}}</p> -->
             <br>
             <!-- <ion-icon name="star" color="gold" *ngFor="let item of [1,2,3,4,5];"></ion-icon>

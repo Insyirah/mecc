@@ -56,6 +56,11 @@ constructor( private alertCtrl: AlertController,private serviceApi: ServiceApiPr
     console.log(this.form)
     this.serviceApi.postSubmitBooking(this.form).subscribe(data => {
       console.log(data)
+      if(data.status == "success"){
+        this.presentAlert('You have successfully booking.');
+      }else{
+        this.presentAlert('Service error');
+      }
     })
   }
   // this.presentAlert('The email is already in used. Please try another email.');
