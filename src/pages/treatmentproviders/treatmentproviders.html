@@ -9,11 +9,11 @@
 <ion-content padding>
   <ion-segment color="primary" [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
     <ion-segment-button value="first">
-      TREATMENTS
+      ABOUT
     </ion-segment-button>
 
     <ion-segment-button value="second">
-      ABOUT
+      TREATMENTS
     </ion-segment-button>
 
     <ion-segment-button value="third">
@@ -22,31 +22,6 @@
   </ion-segment>
 
   <ion-slides style="height:unset;" #mySlider (ionSlideDidChange)="onSlideChanged($event)">
-    <ion-slide>
-      <br>
-      <span style="font-size:90%">Select the treatments</span>
-      <br>
-      <span style="font-size:80%">You can choose multiple treatment</span>
-      <br>
-      <br>
-      <hr>
-      <!-- <span style="font-size:80%"><b>Hair</b></span> -->
-      <!-- 
-              <ion-item (click)= "picked(treatment.name,position.o)"*ngFor="let treatment of treatments; let position of o" >
-                {{treatment.name}} <a class="hours">{{treatment.hours}}</a><a class="hours">{{treatment.price}}</a>
-              </ion-item> -->
-
-              <ion-item *ngFor="let treatment of treatmentList;let i = index" style="white-space: normal;" text-wrap>
-                <ion-label>
-                <b> {{treatment.treatmentName}} </b><br>
-                <a>Rp&nbsp;{{treatment.price}} k</a>
-                <a class="hours">{{treatment.treatmentDuration}} min</a>
-                </ion-label>
-                <ion-checkbox [(ngModel)]="checkedItems[i]" (ionChange)="choosenTreatment(treatment.treatmentID,checkedItems[i],treatment.agentDiscountID,treatment.agentBranchID)" color="primary"></ion-checkbox>
-                </ion-item>
-      <button (click)="bookAppointment()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Make Appointment</button>
-    </ion-slide>
-
     <ion-slide>
 
       <ion-slides pager="true" parallax="true">
@@ -68,7 +43,8 @@
         <button class="button" ion-button color="rate">4.2
           <ion-icon name="star-half" ios="ios-star-half" md="md-star-half" class="rate"></ion-icon>
         </button>
-        <span class="review">3 Reviews</span>
+        <span class="review">3 Reviews</span>&nbsp;&nbsp;
+        <span class="discount">Discount Available:</span>
       </ion-item>
       <ion-row align="center">
         <ion-col>
@@ -109,6 +85,31 @@
         <ion-icon color="primary" name="mail" item-left></ion-icon>
         <ion-input placeholder="sal@gmail.com"></ion-input>
       </ion-item>
+    </ion-slide>
+
+    <ion-slide>
+      <br>
+      <span style="font-size:90%">Select the treatments</span>
+      <br>
+      <span style="font-size:80%">You can choose multiple treatment</span>
+      <br>
+      <br>
+      <hr>
+      <!-- <span style="font-size:80%"><b>Hair</b></span> -->
+      <!-- 
+              <ion-item (click)= "picked(treatment.name,position.o)"*ngFor="let treatment of treatments; let position of o" >
+                {{treatment.name}} <a class="hours">{{treatment.hours}}</a><a class="hours">{{treatment.price}}</a>
+              </ion-item> -->
+
+              <ion-item *ngFor="let treatment of treatmentList;let i = index" style="white-space: normal;" text-wrap>
+                <ion-label>
+                <b> {{treatment.treatmentName}} </b><br>
+                <a>Rp&nbsp;{{treatment.price}} k</a>
+                <a class="hours">{{treatment.treatmentDuration}} min</a>
+                </ion-label>
+                <ion-checkbox [(ngModel)]="checkedItems[i]" (ionChange)="choosenTreatment(treatment.treatmentID,checkedItems[i],treatment.agentDiscountID,treatment.agentBranchID)" color="primary"></ion-checkbox>
+                </ion-item>
+      <button (click)="bookAppointment()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Make Appointment</button>
     </ion-slide>
 
     <ion-slide>

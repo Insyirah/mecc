@@ -17,6 +17,7 @@ export class AboutPage {
   slides: any;
   providerr:any;
   completed:any;
+  rejected:any;
 
   constructor(private serviceApi: ServiceApiProvider,public navCtrl: NavController) {
     
@@ -29,6 +30,10 @@ export class AboutPage {
       {
         id: "second",
         title: "Second Slide"
+      },
+      {
+        id: "third",
+        title: "Third Slide"
       }
     ];
 
@@ -58,6 +63,11 @@ export class AboutPage {
       this.store=this.bookingUpcomingStatus.storeName
       this.date=this.bookingUpcomingStatus.appointmentDate
     })
+    this.rejected = [
+      {name:'Johny Saloons',treatment:"Eyelashes, Haircut",date:"Wednesday, March 20, 2PM"},
+      {name:'Johny Saloons',treatment:"Lash Extension",date:"Wednesday, March 20, 2PM"},
+    ]
+
   }
 
   onSegmentChanged(segmentButton) {

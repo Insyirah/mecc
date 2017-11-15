@@ -45,6 +45,29 @@ export class SetDayAppointmentPage {
     //  console.log(moment())
   }
 
+  // ngAfterViewInit(){
+  //   /* Calls `this.calc()` after receiving an initial date */
+  //   this.todayDate.setHours(0, 0, 0, 0);
+
+  //   setTimeout(() => {
+  //     // this.calc();
+  //     this.calendarDefault.todayDate();
+  //   });
+  // }
+
+  setToday(){
+    let tmp = new Date();
+    // tmp.setHours(0,0,0,0);
+    let today = new Date(this.calendarDefault.todayDate)
+    // let calc : boolean = tmp.getMonth() + "" + tmp.getFullYear() != this.todayDate.getMonth() + "" + this.todayDate.getFullYear();
+    // console.log("calc :", calc)
+    // let calc: boolean = tmp.getMonth() + "" + tmp.getFullYear() != this.todayDate.getMonth() + "" + this.todayDate.getFullYear();
+    if (tmp.getMonth() + "" + tmp.getFullYear() == this.todayDate.getMonth() + "" + this.todayDate.getFullYear()){
+      this.calendarDefault.todayDate();
+      console.log("TODAY :", today)
+    }
+  }
+
   nextMonth() {
     let v = new Date(this.calendarDefault.todayDate)
     this.calendarDefault.todayDate = new Date(v.setMonth(v.getMonth() + 1))// utk pergi ke next month
@@ -96,7 +119,7 @@ export class SetDayAppointmentPage {
     for (let i = 0; i < this.data.length; i++) {
       this.daysDisable.push({
         date: new Date(this.data[i].date),
-        subTitle: "",
+        subTitle: "FULL",
         disable: true,
         marked: true
       })
