@@ -16,17 +16,21 @@ import { AboutPage } from '../about/about';
   templateUrl: 'confirm-booking.html',
 })
 export class ConfirmBookingPage {
+  totalPrice: number;
+  storeName: string;
+  bookdate: Date;
   form: { applicationID: any; };
   applicationId: any;
-bookings : any;
-constructor( private alertCtrl: AlertController,private serviceApi: ServiceApiProvider,public navCtrl : NavController, public navParams : NavParams) {
+  bookings: Array<any>;
+  constructor(private alertCtrl: AlertController, private serviceApi: ServiceApiProvider, public navCtrl: NavController, public navParams: NavParams) {
 
   }
 
- async ionViewDidLoad() {
+  async ionViewDidLoad() {
     console.log('ionViewDidLoad ConfirmBookingPage');
-   await this.getBookingSummary()
+    await this.getBookingSummary()
   }
+
   private presentAlert(text) {
     let alert = this.alertCtrl.create({
       subTitle: text,
@@ -34,25 +38,39 @@ constructor( private alertCtrl: AlertController,private serviceApi: ServiceApiPr
     });
     alert.present();
   }
- getBookingSummary(){
-  this.bookings = this.navParams.get("detailBooking")
-  this.applicationId = this.navParams.get("applicationID")
-  console.log("b",this.bookings)  
+  getBookingSummary() {
+    this.bookings = this.navParams.get("detailBooking")
+    this.applicationId = this.navParams.get("applicationID")
+    console.log("b", this.bookings)
+
+    this.bookdate = this.bookings[0].appointmentDate
+    this.storeName = this.bookings[0].storeName
+    this.countTotalPrice()
   }
 
-  goBooking(){
+  countTotalPrice() {
+    let p = this.bookings.length
+    this.totalPrice = 0
+    for (let o = 0; o < p; o++) {
+      let y = this.bookings[o].treatmentPrice
+      this.totalPrice += y
+    }
+    console.log("total Price",this.totalPrice)
+  }
+
+  goBooking() {
     this.form = {
-      applicationID:this.applicationId
+      applicationID: this.applicationId
     }
     console.log(this.form)
     this.serviceApi.postSubmitBooking(this.form).subscribe(data => {
       console.log(data)
-      if(data.status == "success"){
+      if (data.status == "success") {
         this.presentAlert('You have successfully booking.');
-        this.navCtrl.setRoot(AboutPage,{
-          applicationID:this.applicationId
+        this.navCtrl.setRoot(AboutPage, {
+          applicationID: this.applicationId
         })
-      }else{
+      } else {
         this.presentAlert('Service error');
       }
     })

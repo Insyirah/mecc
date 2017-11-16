@@ -12,44 +12,51 @@
 
 
 <ion-content padding>
-  
-  <ion-item *ngFor="let book of bookings">
-      <b>{{book.storeName}}</b><br><br>
-    
-      <span>
-          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;{{book.appointmentDate| date: 'dd/MM/yyyy'}}
-      </span><br><br>
-      The treatment you have choosen are :<br><hr>
-      <br>
-      <ion-grid>
+  <ion-item>
+
+    <span>
+          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;{{bookdate| date: 'dd/MM/yyyy'}}
+      </span>
+    <br><br> <b>{{storeName}}</b>
+    <br><br> The treatment you have choosen are :<br>
+
+    <hr>
+    <br>
+    <ion-grid>
+      <div *ngFor="let book of bookings">
+
         <ion-row>
           <ion-col>
-              {{book.treatmentMainName}}
-            </ion-col>
-            <ion-col>
-                <a class="b"><ion-icon ios="ios-time" md="md-time"></ion-icon>&nbsp;&nbsp;{{book.treatmentDuration}}min</a>
-              </ion-col>
-              <ion-col>
-                  Rp.{{book.treatmentPrice}}k
-                </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-                
-              Total
-              </ion-col>
-              <ion-col>
-            
-                  </ion-col>
-                  <ion-col>
-                      Rp.{{book.treatmentPrice}}k
-                      </ion-col>
-          </ion-row>
-      </ion-grid>
+            {{book.treatmentMainName}}
+          </ion-col>
+          <ion-col>
+            <a class="b">
+              <ion-icon ios="ios-time" md="md-time"></ion-icon>&nbsp;&nbsp;{{book.treatmentDuration}}min</a>
+          </ion-col>
+          <ion-col>
+            Rp.{{book.treatmentPrice}}
+          </ion-col>
+        </ion-row>
+      </div>
 
-     
-      <button (click)="goBooking()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Book Appointment</button>
-      <span style="font-size:xx-small;text-align:justify;white-space:normal;">
+      <ion-row>
+        <ion-col>
+
+          Total
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+         Rp.{{totalPrice}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <button (click)="goBooking()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Book Appointment</button>
+
+    <span style="font-size:xx-small;text-align:justify;white-space:normal;">
           *note
           <ol>
             <li>You will pay for services to the Merchant directly. </li>
@@ -57,7 +64,6 @@
             <li>This price is exclude transportation cost if our beautician need to come to your place. Our average price estimation for transportation is IDR 8000/KM.</li>
           </ol>
           </span>
-    </ion-item>
-
+  </ion-item>
 
 </ion-content>
