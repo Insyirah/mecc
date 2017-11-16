@@ -9,6 +9,7 @@ import moment from "moment"
   templateUrl: 'set-day-appointment.html',
 })
 export class SetDayAppointmentPage {
+  applicationDetail: any;
   branchId: any;
   discountId: any;
   applicationId: any;
@@ -139,6 +140,7 @@ export class SetDayAppointmentPage {
     this.applicationId = this.navParams.get('applicationID')
     this.discountId= this.navParams.get('agentDiscountID')
     this.branchId = this.navParams.get('agentBranchID')
+    this.applicationDetail =this.navParams.get('applicationMainDetail')
 
     console.log("AppID",this.applicationId)
     console.log("DiscID",this.discountId)
@@ -148,7 +150,8 @@ export class SetDayAppointmentPage {
       date : this.selectedDate,
       applicationID:this.applicationId,
       agentDiscountID:this.discountId,
-      agentBranchID:this.branchId
+      agentBranchID:this.branchId,
+      applicationMainDetail:this.applicationDetail
     })
   }
 

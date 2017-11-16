@@ -7,6 +7,7 @@ import {ServiceApiProvider} from '../../providers/service-api/service-api';
 @IonicPage()
 @Component({selector: 'page-treatmentproviders', templateUrl: 'treatmentproviders.html'})
 export class TreatmentprovidersPage {
+  applicationDetail: any;
   branchId: any;
   discountId: any;
   applicationId: any;
@@ -29,9 +30,7 @@ export class TreatmentprovidersPage {
   selectedSegment : string;
   slides : any;
   treatments : any[]
-
   checked : boolean[]
-  test : boolean = false
   constructor(private serviceApi : ServiceApiProvider, public navCtrl : NavController, public navParams : NavParams) {
     this.selectedSegment = 'first';
     this.slides = [
@@ -118,12 +117,15 @@ export class TreatmentprovidersPage {
     this.serviceApi.postBookingMain(this.form).subscribe(data => {
       this.bookingDetail = data
       this.applicationId = this.bookingDetail.applicationMainDetail[0].applicationID
+      this.applicationDetail = this.bookingDetail.applicationMainDetail
       console.log("bookingDetail",this.bookingDetail)      
       console.log("AppID TreatPro",this.appID)
+      console.log("applicationMainDetail",this.applicationDetail)      
       this.navCtrl.push(SetDayAppointmentPage,{
         applicationID :this.applicationId,
         agentDiscountID:this.discountId,
-        agentBranchID:this.branchId
+        agentBranchID:this.branchId,
+        applicationMainDetail:this.applicationDetail
       })
     })
  

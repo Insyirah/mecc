@@ -21,16 +21,6 @@ export class ConfirmBookingPage {
 bookings : any;
 constructor( private alertCtrl: AlertController,private serviceApi: ServiceApiProvider,public navCtrl : NavController, public navParams : NavParams) {
 
-    
-    // this.bookings = [
-    //   {
-    //     provider: 'Johnny Saloon',
-    //     date: "Wednesday,20 March",
-    //     period:"30min",
-    //     treatment: "Hair Stylist",
-    //     price:"Rp. 100k"
-    //   },
-    // ];
   }
 
  async ionViewDidLoad() {

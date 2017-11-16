@@ -18,6 +18,11 @@ import { LocalStorageService } from 'ng2-webstorage';
   templateUrl: 'set-time-appointment.html',
 })
 export class SetTimeAppointmentPage {
+  name2: any;
+  name1: any;
+  name: any;
+  applicationDetail: any;
+  checkSlot: { applicationID: any; agentSlotID: any; applicationBookingDate: any; };
   booking: any;
   AgentSlotID: any;
   fomss: { applicationID: any; };
@@ -51,12 +56,20 @@ export class SetTimeAppointmentPage {
     this.discountId = this.navParams.get('agentDiscountID')
     this.branchId = this.navParams.get('agentBranchID')
     this.dates = this.navParams.get('date')
+    this.applicationDetail = this.navParams.get('applicationMainDetail')
 
     console.log("AppIDT", this.applicationId)
     console.log("DiscIDT", this.discountId)
     console.log("BrancIDT", this.branchId)
     console.log("Dates", this.dates)
+    console.log("ApplicationDetail",this.applicationDetail)
 
+    this.name = this.applicationDetail[0].treatmentName.ParameterValue
+    this.name1 = this.applicationDetail[1].treatmentName.ParameterValue
+    // this.name2 = this.applicationDetail[2].treatmentName.ParameterValue
+    
+    
+    console.log("nama",this.name)
     this.form = {
       applicationID: this.applicationId,
       agentDiscountID: this.discountId,
@@ -78,12 +91,25 @@ export class SetTimeAppointmentPage {
 
     let p = this.timeSlot.filter(x => { return x.startHour == startHour })
     let o = p[0]
-    console.log(o)
+    console.log("o",o)
 
     this.AgentSlotID = o.agentSlotID
     this.slot = o.startHour
     console.log(this.slot)
-    // this.choose = this.storage.retrieve("timeSlot")
+
+    this.checkSlot = {
+      applicationID: this.applicationId,
+      agentSlotID:this.AgentSlotID,
+      applicationBookingDate: this.dates
+    }
+
+    this.serviceApi.getCheckBookingSlot(this.checkSlot).subscribe(data => {
+      console.log(data)
+      if(data.test == "NotOk"){
+        alert("cannot choose this slot as not enough for treatment that you have choose.Please choose another slot")
+        
+      }
+    })
   }
 
   setBooking() {

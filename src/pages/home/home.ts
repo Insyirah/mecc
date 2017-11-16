@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController, Loading } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import { ListprovidersPage } from '../listproviders/listproviders';
 import { ServiceApiProvider } from '../../providers/service-api/service-api';
@@ -9,61 +9,40 @@ import { ServiceApiProvider } from '../../providers/service-api/service-api';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  loading: Loading;
   bodyTreatment: Array<any>;
   hairTreatment: Array<any>;
-  faceTreatment:  Array<any>;
+  faceTreatment: Array<any>;
   providerId: any;
   form: {};
   treatmentProvidedDetailID: number;
   avatars: any[];
   ava: any[];
 
-  constructor(private serviceApi: ServiceApiProvider, public navCtrl: NavController) {
-   
-    // this.avatars = [
-    //   { category: '1', img: "assets/dino.jpg" },
-    //   { category: '1', img: "assets/dino.jpg" },
-    //   { category: '1', img: "assets/dino.jpg" },
-    //   { category: '1', img: "assets/dino.jpg" },
-    //   { category: '1', img: "assets/dino.jpg" },
-    //   { category: '1', img: "assets/dino.jpg" },
-    // ];
-
+  constructor(public loadingCtrl: LoadingController,private serviceApi: ServiceApiProvider, public navCtrl: NavController) {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present()
   }
 
   ionViewDidLoad() {
-    this.getFaceTreatment()
-    this.getHairTreatment()
-    this.getBodyTreatment()
+    this.getAllTreatment()
   }
 
-  getFaceTreatment() {
-    this.form = {
-      moduleName: "UserApplication",
-      masterName: "List Of Face Treatment"
-    }
-    this.serviceApi.getFaceTreatment(this.form).subscribe(data => {
-      this.faceTreatment = data.masterData
-      console.log("faceTreatment", this.faceTreatment)
+
+  getAllTreatment(){
+    this.serviceApi.getTreatmentMasterData().subscribe(data => {
+      console.log(data)
+      this.faceTreatment = data.FaceMasterData
+      this.hairTreatment = data.HairMasterData
+      this.bodyTreatment = data.BodyMasterData
+      console.log("facetreatment",this.faceTreatment)
+      console.log("hairTreatment",this.hairTreatment)
+      console.log("bodyTreatment",this.bodyTreatment)
+      this.loading.dismiss()
     })
   }
-
-  getHairTreatment() {
-    this.form = {
-      moduleName: "UserApplication",
-      masterName: "List Of Hair Treatment"
-    }
-    this.serviceApi.getHairTreatment(this.form).subscribe(data => {
-      this.hairTreatment = data.masterData
-      console.log("hairTreatment", this.hairTreatment)
-    })
-  }
-
-  // goHairTreatmentProvider(MasterDataMaintenanceItemID) {
-  //   this.navCtrl.push(ListprovidersPage, {
-  //     treatmentHairId: MasterDataMaintenanceItemID
-  //   })
-  // }
 
   goTreatmentProvider(MasterDataMaintenanceItemID) {
     this.navCtrl.push(ListprovidersPage, {
@@ -71,24 +50,6 @@ export class HomePage {
     })
   }
 
-  getBodyTreatment() {
-    this.form = {
-      moduleName: "UserApplication",
-      masterName: "List Of Body Treatment"
-    }
-    this.serviceApi.getBodyTreatment(this.form).subscribe(data => {
-      this.bodyTreatment = data.masterData
-      console.log("bodyTreatment", this.bodyTreatment)
-    })
-  }
-
-
-  test() {
-    this.providerId = 9
-    this.navCtrl.push(ListprovidersPage, {
-      providerID: this.providerId
-    });
-  }
 
 }
 
