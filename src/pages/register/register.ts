@@ -18,6 +18,7 @@ import { ServiceApiProvider } from '../../providers/service-api/service-api';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
+  verifyCode: any;
   form: {};
   fullName: any;
   numberPhone: any;
@@ -77,25 +78,32 @@ export class RegisterPage {
   goPhoneNumber(x){
     // this.submitFormRegister.phoneNumber = x
     // this.p = x.phoneNumber
-    let myModal = this.modalCtrl.create(RegisterPage, {
-      phoneNumber:x.phoneNumber,
-      planCase:"fullName"
-    });//ni 
+    
     console.log(x.phoneNumber)
 
-    this.serviceApi.getVerificationCode(x.phoneNumber).subscribe(x => {
-       console.log(x)
+    this.serviceApi.getVerificationCode(x.phoneNumber).subscribe(data=> {
+       
+       this.verifyCode= data
+       console.log("vc",this.verifyCode)
+       let myModal = this.modalCtrl.create(RegisterPage, {
+        phoneNumber:x.phoneNumber,
+        planCase:"fullName",
+        vCode:this.verifyCode
+      });//ni 
+      myModal.present();
     })
-    myModal.present();
+  
   }
 
   goFullName(x){
     // this.submitFormRegister = this.navParams.get("submitFormRegister")
     this.numberPhone = this.navParams.get("phoneNumber")
+    this.verifyCode = this.navParams.get("vCode")
     let myModal = this.modalCtrl.create(RegisterPage, {
       fullName: x.fullName,
       phoneNumber:this.numberPhone,
       planCase:"userName",
+      vCode:this.verifyCode
     });
     myModal.present();
   }
@@ -103,11 +111,13 @@ export class RegisterPage {
   goUserName(x){
     this.numberPhone = this.navParams.get("phoneNumber")
     this.fullName = this.navParams.get("fullName")
+    this.verifyCode = this.navParams.get("vCode")
     let myModal = this.modalCtrl.create(RegisterPage, {
       userName: x.userName,
       phoneNumber:this.numberPhone,
       fullName:this.fullName,
-      planCase:"email"
+      planCase:"email",
+      vCode:this.verifyCode
     });//then this
     myModal.present();
   }
@@ -116,29 +126,35 @@ export class RegisterPage {
     this.numberPhone = this.navParams.get("phoneNumber")
     this.fullName = this.navParams.get("fullName")
     this.userName = this.navParams.get("userName")
+    this.verifyCode = this.navParams.get("vCode")    
     let myModal = this.modalCtrl.create(RegisterPage, {
       phoneNumber:this.numberPhone,
       fullName:this.fullName,
       userName:this.userName,
       email: x.email,
-      planCase:"pw"
+      planCase:"pw",
+      vCode:this.verifyCode
     });
     myModal.present();
     // console.log(x.email)
   }
 
   goPassword(x){
+    
     this.numberPhone = this.navParams.get("phoneNumber")    
     this.fullName = this.navParams.get("fullName")
     this.userName = this.navParams.get("userName") 
-    this.email = this.navParams.get("email")   
+    this.email = this.navParams.get("email") 
+    this.verifyCode = this.navParams.get("vCode")    
+    console.log("ver",this.verifyCode)
     let myModal = this.modalCtrl.create(RegisterPage, {
       phoneNumber:this.numberPhone,    
       fullName:this.fullName,  
       userName:this.userName,   
       email: this.email,   
       password: x.password,//
-      planCase:"code"
+      planCase:"code",
+      
     });
     myModal.present();
     console.log(this.email)

@@ -86,10 +86,11 @@
           <div *ngIf="code">
               <form [formGroup]="registerForm" (ngSubmit)="goRegister(registerForm.value)">
               <br><br><br><br><br><br><br><br>
-                <a class="a"><b>Enter Confirmation Code</b></a>
+                <a class="a"><b>Enter Confirmation Code:</b></a>
             
               <ion-item>
-                <ion-input formControlName="code" type="text"></ion-input>
+                <ion-input formControlName="code" type="text"></ion-input><br>
+                {{verifyCode}}
               </ion-item>
               <ion-fab right bottom>
                   <button ion-fab mini color="info" type="submit" ><ion-icon ios="ios-arrow-round-forward" md="md-arrow-round-forward"></ion-icon></button>
