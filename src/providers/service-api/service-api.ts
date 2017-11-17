@@ -204,6 +204,14 @@ getSummaryBooking(form): Observable<any> {
     );
 }
 
+getBookingCalendar(form): Observable<any> {//setdayappointment page
+  let url = this.host + 'UserBooking/api/GetBookingCalendar/' + form.agentBranchID
+  console.log(url)
+  return this.http.get(url)
+    .map((res: Response) => res.json()
+  );
+}
+
 
   
   

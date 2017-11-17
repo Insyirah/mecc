@@ -17,8 +17,18 @@ ion-thumbnail {
         margin-left: 18%;
     }
 }
+
+.search{
+    margin-top: 3%;
+}
+
 .butang{
     font-size: 1.4em;
+    margin-top: 3%;
+}
+
+.list{
+    margin-top: 3%;
 }
 
 ion-buttons.filter{
@@ -35,6 +45,7 @@ ion-button.option{
 }
 .searchbar-md .searchbar-search-icon {
     top:6px;
+    margin-top: 3%;
 }
 h2.name{
     margin: 10px 0px;
@@ -45,5 +56,8 @@ p.name2{
 }
 ion-button.option{
     padding-left: 10%;
+}
+.map{
+    height: 30px;
 }
 }

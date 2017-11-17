@@ -3,15 +3,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SetTimeAppointmentPage } from '../set-time-appointment/set-time-appointment';
 import { CalendarComponentOptions, DayConfig } from "ion2-calendar/dist";
 import moment from "moment"
+import { ServiceApiProvider } from '../../providers/service-api/service-api';
 @IonicPage()
 @Component({
   selector: 'page-set-day-appointment',
   templateUrl: 'set-day-appointment.html',
 })
 export class SetDayAppointmentPage {
+  getCalendar: { };
+  bookingDetail: any;
   branchId: any;
   discountId: any;
   applicationId: any;
+  form : {};
+  appID: any;
 
   selectedDate: any;
   harini: Date = new Date()
@@ -36,37 +41,24 @@ export class SetDayAppointmentPage {
   };
   todayDate: Date = new Date()
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private serviceApi : ServiceApiProvider) {
     this.CalendarOptions.disableWeeks = [0, 6]
     this.DisableDate()
 
-   
-    //   this.disableMonth()
-    //  console.log(moment())
   }
 
-  // ngAfterViewInit(){
-  //   /* Calls `this.calc()` after receiving an initial date */
-  //   this.todayDate.setHours(0, 0, 0, 0);
-
-  //   setTimeout(() => {
-  //     // this.calc();
+  // setToday(){
+  //   let tmp = new Date();
+  //   // tmp.setHours(0,0,0,0);
+  //   let today = new Date(this.calendarDefault.todayDate)
+  //   // let calc : boolean = tmp.getMonth() + "" + tmp.getFullYear() != this.todayDate.getMonth() + "" + this.todayDate.getFullYear();
+  //   // console.log("calc :", calc)
+  //   // let calc: boolean = tmp.getMonth() + "" + tmp.getFullYear() != this.todayDate.getMonth() + "" + this.todayDate.getFullYear();
+  //   if (tmp.getMonth() + "" + tmp.getFullYear() == this.todayDate.getMonth() + "" + this.todayDate.getFullYear()){
   //     this.calendarDefault.todayDate();
-  //   });
+  //     console.log("TODAY :", today)
+  //   }
   // }
-
-  setToday(){
-    let tmp = new Date();
-    // tmp.setHours(0,0,0,0);
-    let today = new Date(this.calendarDefault.todayDate)
-    // let calc : boolean = tmp.getMonth() + "" + tmp.getFullYear() != this.todayDate.getMonth() + "" + this.todayDate.getFullYear();
-    // console.log("calc :", calc)
-    // let calc: boolean = tmp.getMonth() + "" + tmp.getFullYear() != this.todayDate.getMonth() + "" + this.todayDate.getFullYear();
-    if (tmp.getMonth() + "" + tmp.getFullYear() == this.todayDate.getMonth() + "" + this.todayDate.getFullYear()){
-      this.calendarDefault.todayDate();
-      console.log("TODAY :", today)
-    }
-  }
 
   nextMonth() {
     let v = new Date(this.calendarDefault.todayDate)
@@ -131,9 +123,11 @@ export class SetDayAppointmentPage {
     console.log(x, " huhu");
   }
 
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad SetDayAppointmentPage');
-  // }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SetDayAppointmentPage');
+    this.branchId = this.navParams.get('agentBranchID')
+    this.bookingCalendar()
+  }
 
   setTime(x) {
     this.applicationId = this.navParams.get('applicationID')
@@ -149,6 +143,15 @@ export class SetDayAppointmentPage {
       applicationID:this.applicationId,
       agentDiscountID:this.discountId,
       agentBranchID:this.branchId
+    })
+  }
+
+  bookingCalendar(){
+    this.getCalendar = {
+      agentBranchID:this.branchId
+    }
+    this.serviceApi.getBookingCalendar(this.getCalendar).subscribe(data => {
+      console.log(data)
     })
   }
 
