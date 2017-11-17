@@ -7,38 +7,30 @@
 <ion-content padding>
     <span><b>Select the time for your appointment</b></span><br><br>
     <span>The treatment you have choosen are:</span><br>
-    <a><b>Hair-eyelashes</b></a><br><br>
-    
+    <a><b>{{name}},{{name1}}</b></a><br><br>
     <span>
-        <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;&nbsp;{{bookDate}}
+        <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;&nbsp;{{bookDate| date: 'dd/MM/yyyy'}}
     </span>
-    <br><br>
-    <hr>
-    <!-- <ion-item *ngFor="let time of times">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-              {{time.time}}
-            </ion-col>
-            <ion-col col-6 >
-                <a class="b"><ion-icon ios="ios-time" md="md-time"></ion-icon>&nbsp;&nbsp;{{time.period}}</a>
-            </ion-col>
-        </ion-row>
-        </ion-grid>
-    </ion-item> -->
-    <!-- <ion-item>
-      <ion-label >Select Time</ion-label>
-      <ion-select (click)="chooseSlot()"  interface="popover" type="text">
-        <ion-option [value]="slot.agentSlotID" *ngFor="let slot of choose">{{slot.startHour}}&nbsp;&nbsp;&nbsp;&nbsp;<a>{{slot.durationMinute}}min</a></ion-option>
-      </ion-select>
-    </ion-item> -->
+    <br><br><hr>
     <ion-item>
       <ion-label floating>Select Time</ion-label>
       <ion-select interface="popover" [(ngModel)]="slot" (ionChange)="chooseSlot($event)"  >
-        <ion-option *ngFor="let slots of timeSlot" value="{{slots.agentSlotID}}">{{slots.startHour}}</ion-option>
+        <ion-option *ngFor="let slots of timeSlot" [value]=slots.startHour>{{slots.startHour}}</ion-option>
       </ion-select>
     </ion-item>
     <button (click)="setBooking()" ion-button color="primary" type="submit" class="submitButton" full margin-top>Proceed</button>
-    
-   
 </ion-content>
+
+
+
+<!-- <div *ngIf="specific">
+  <ion-item>
+    <ion-label floating>Select Time</ion-label>
+    <ion-select interface="popover" [(ngModel)]="slot" (ionChange)="chooseSlot($event)">
+      <ion-option *ngFor="let specificDamages of specification" [value]=specificDamages.specificId>{{specificDamages.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <div *ngIf="!goService.controls.specificDamage.valid  && (goService.controls.specificDamage.dirty || submitAttempt)">
+    <p>Please specified the damages</p>
+  </div>
+</div> -->

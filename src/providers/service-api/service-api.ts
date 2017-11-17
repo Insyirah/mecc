@@ -93,29 +93,12 @@ export class ServiceApiProvider {
           .map((res: Response) => res.json());
     }
 
-    getFaceTreatment(form): Observable<any[]> {//homepage(notDone)
-        let url = this.host + 'Global/api/GetMasterData/'+form.moduleName+'/'+form.masterName;
-        console.log(url)
-        return this.http.get(url).map((res: Response) => res.json()
-          );
+    getTreatmentMasterData(): Observable<any> {//homepage(notDone)
+      let url = this.host + 'Global/api/GetTreatmentMasterData'
+      console.log(url)
+      return this.http.get(url).map((res: Response) => res.json()
+        );
     }
-
-    getHairTreatment(form): Observable<any> {//homepage(notDone)
-        let url = this.host + 'Global/api/GetMasterData/'+form.moduleName+'/'+form.masterName;
-        console.log(url)
-        return this.http.get(url)
-          .map((res: Response) => res.json()
-          );
-    }
-
-    getBodyTreatment(form): Observable<any> {//homepage(notDone)
-        let url = this.host + 'Global/api/GetMasterData/'+form.moduleName+'/'+form.masterName;
-        console.log(url)
-        return this.http.get(url)
-          .map((res: Response) => res.json()
-          );
-    }
-
 
     getSkinType(form): Observable<any> {//contactpage(notDone)
         let url = this.host + 'Global/api/GetMasterData/'+form.moduleName+'/'+form.masterName;
@@ -211,6 +194,47 @@ getBookingCalendar(form): Observable<any> {//setdayappointment page
     .map((res: Response) => res.json()
   );
 }
+
+postSubmitBooking(form): Observable<any> {
+  let url = this.host + 'UserBooking/api/PostSubmitBooking/'+ form.applicationID
+  console.log(url)
+  let headers = new Headers({ 'Content-Type': 'application/json' });
+  let options = new RequestOptions({ headers: headers });
+  return this.http.post(url, form, options)
+  .map((res: Response) => res.json());
+}
+
+getUserBookingActivity(): Observable<any> {
+  let url = this.host + 'Dashboard/User/api/GetUserBookingActivity/' + this.userId
+  console.log(url)
+  return this.http.get(url)
+    .map((res: Response) => res.json()
+    );
+}
+
+postCancelBooking(form): Observable<any> {
+  let url = this.host + 'UserBooking/api/PostCancelBooking/'+ form.applicationID
+  console.log(url)
+  let headers = new Headers({ 'Content-Type': 'application/json' });
+  let options = new RequestOptions({ headers: headers });
+  return this.http.post(url, form, options)
+  .map((res: Response) => res.json());
+}
+
+getCheckBookingSlot(form): Observable<any> {
+  let url = this.host + 'UserBooking/api/GetCheckingBookingSlot'
+  console.log(url)
+  let headers = new Headers({ 'Content-Type': 'application/json' });
+  let options = new RequestOptions({ headers: headers });
+  return this.http.post(url, form, options)
+  .map((res: Response) => res.json());
+}
+
+
+
+
+
+
 
 
   
