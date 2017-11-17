@@ -14,7 +14,7 @@ page-treatmentproviders {
     }
     .hours{
         margin-left: 15%;
-        font-size: 80%;
+       
     }
     .button{
         margin-top: 0%;
@@ -24,8 +24,11 @@ page-treatmentproviders {
         padding-left: 20%;
     }
     .review{
-        font-size: 13px;
+        font-size: 15px;
         padding-left: 2%;
+    }
+    .discount{
+        padding-left: 10%;
     }
     ion-icon.time{
         display: inline-block;
@@ -42,6 +45,8 @@ page-treatmentproviders {
         margin-bottom: 0rem;
         font-weight: 100;
         text-align: justify;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 
 }

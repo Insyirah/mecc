@@ -1,37 +1,55 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {AboutPage} from '../about/about';
+import { NavController, LoadingController, Loading } from 'ionic-angular';
+import { AboutPage } from '../about/about';
 import { ListprovidersPage } from '../listproviders/listproviders';
-
-
+import { ServiceApiProvider } from '../../providers/service-api/service-api';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  avatars : any[];
-  ava:any[];
-  calendar:Date = new Date()
-  markDisabled:any
-constructor(public navCtrl : NavController) {
+  loading: Loading;
+  bodyTreatment: Array<any>;
+  hairTreatment: Array<any>;
+  faceTreatment: Array<any>;
+  providerId: any;
+  form: {};
+  treatmentProvidedDetailID: number;
+  avatars: any[];
+  ava: any[];
 
-this.avatars = [
-  {category:'1',img:"assets/dino.jpg"},
-  {category:'1',img:"assets/dino.jpg"},
-  {category:'1',img:"assets/dino.jpg"},
-  {category:'1',img:"assets/dino.jpg"},
-  {category:'1',img:"assets/dino.jpg"},
-  {category:'1',img:"assets/dino.jpg"},
-];
+  constructor(public loadingCtrl: LoadingController,private serviceApi: ServiceApiProvider, public navCtrl: NavController) {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present()
+  }
 
-this.markDisabled = (date: Date) => {
-  var current = new Date();
-  return date < current;
-};}
+  ionViewDidLoad() {
+    this.getAllTreatment()
+  }
 
-test(){
-  this.navCtrl.push(ListprovidersPage)
+
+  getAllTreatment(){
+    this.serviceApi.getTreatmentMasterData().subscribe(data => {
+      console.log(data)
+      this.faceTreatment = data.FaceMasterData
+      this.hairTreatment = data.HairMasterData
+      this.bodyTreatment = data.BodyMasterData
+      console.log("facetreatment",this.faceTreatment)
+      console.log("hairTreatment",this.hairTreatment)
+      console.log("bodyTreatment",this.bodyTreatment)
+      this.loading.dismiss()
+    })
+  }
+
+  goTreatmentProvider(MasterDataMaintenanceItemID) {
+    this.navCtrl.push(ListprovidersPage, {
+      treatmentId: MasterDataMaintenanceItemID
+    })
+  }
+
+
 }
 
-}
